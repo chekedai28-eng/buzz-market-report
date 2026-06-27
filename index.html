@@ -70,9 +70,11 @@
   strong{font-weight:700;color:var(--ink);}
   a{color:var(--accent);}
   .text-muted{color:var(--muted);}
-  .cross-nav{margin:30px 0 4px;}
-  .cross-nav a{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 24px;border-radius:10px;transition:background .15s;}
+  .cross-nav{margin:30px 0 4px;display:flex;gap:12px;flex-wrap:wrap;}
+  .cross-nav a{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 22px;border-radius:10px;transition:background .15s;}
   .cross-nav a:hover{background:var(--accent);}
+  .cross-nav a.alt{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .cross-nav a.alt:hover{border-color:var(--accent);color:var(--accent);background:#fff;}
   .cross-nav .arrow{font-size:18px;}
 
   .lead-p{font-size:17.5px;line-height:2;color:var(--ink);margin-bottom:24px;}
@@ -160,7 +162,11 @@
     <span><b>目標</b>　事業全体トップライン 年商10億円</span>
     <span><b>凡例</b>　<span class="pill fact">公表</span> 一次資料で確認 ／ <span class="pill est">推定</span> ロジック付き試算</span>
   </div>
-  <div class="cross-nav"><a href="companies.html"><span class="arrow">▶</span>事例集：7ジャンルの代表21社（集客方法・年商・成長率・キャッチコピー）を見る　→</a></div>
+  <div class="cross-nav">
+    <a href="companies.html"><span class="arrow">▶</span>② 事例集：代表21社（集客・年商・成長率・キャッチコピー）</a>
+    <a class="alt" href="insights.html"><span class="arrow">▶</span>③ 戦略インサイト：伸びてる会社・勝ち筋・海外事例</a>
+    <a class="alt" href="synergy.html"><span class="arrow">▶</span>④ 事業間シナジー図解：バズカレッジ×法人7商品</a>
+  </div>
 </div>
 
 <!-- ===== TOC ===== -->
