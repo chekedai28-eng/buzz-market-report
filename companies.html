@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>事例集：7ジャンル代表21社 — バズコミット 戦略リサーチ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap');
+  :root{
+    --ink:#1b2330;--body:#2c3644;--muted:#6b7686;--faint:#9aa4b2;
+    --accent:#2f6f9f;--accent-soft:#eef4f9;--line:#e6eaef;--line-soft:#eef1f5;
+    --green:#2e8b6b;--green-soft:#eaf5f0;--amber:#b9802e;--amber-soft:#fbf3e6;--red:#c0563f;--bg:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Noto Sans JP',sans-serif;color:var(--body);background:#f3f5f8;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .page{max-width:880px;margin:0 auto;background:var(--bg);padding:0 60px 110px;box-shadow:0 1px 40px rgba(20,30,50,.06);}
+  a{color:var(--accent);}
+  .text-muted{color:var(--muted);}
+  strong{font-weight:700;color:var(--ink);}
+
+  /* top nav */
+  .topnav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);z-index:10;}
+  .topnav .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px;}
+  .topnav .back:hover{color:var(--accent);}
+  .topnav .where{font-size:12.5px;color:var(--faint);letter-spacing:.04em;}
+
+  /* cover */
+  .cover{padding:54px 0 34px;border-bottom:1px solid var(--line);margin-bottom:46px;}
+  .eyebrow{font-size:13px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:18px;}
+  .cover h1{font-family:'Noto Serif JP',serif;font-weight:700;color:var(--ink);font-size:36px;line-height:1.35;margin-bottom:18px;}
+  .cover .lead{font-size:16px;color:var(--muted);max-width:680px;}
+  .cover .meta{margin-top:22px;font-size:13px;color:var(--faint);}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 9px;border-radius:20px;vertical-align:middle;white-space:nowrap;}
+  .pill.fact{background:var(--green-soft);color:var(--green);}
+  .pill.est{background:var(--amber-soft);color:var(--amber);}
+
+  /* genre section */
+  section{margin-bottom:56px;scroll-margin-top:80px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;padding-bottom:13px;border-bottom:2px solid var(--ink);}
+  .sec-no{font-size:13px;font-weight:900;color:var(--accent);letter-spacing:.05em;}
+  h2.sec-title{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--ink);line-height:1.4;}
+  .sec-sub{font-size:13px;color:var(--faint);font-weight:500;margin-left:auto;align-self:center;}
+
+  /* company card */
+  .co{border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:20px;}
+  .co-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+  .co-name{font-size:19px;font-weight:900;color:var(--ink);}
+  .co-note{font-size:12px;color:var(--faint);}
+  .co-copy{background:var(--accent-soft);border-radius:10px;padding:13px 18px;margin-bottom:16px;font-size:15px;color:var(--ink);line-height:1.7;position:relative;}
+  .co-copy .qlabel{display:block;font-size:11px;letter-spacing:.08em;font-weight:700;color:var(--accent);margin-bottom:3px;}
+  .co-copy b{font-weight:700;}
+
+  .co-metrics{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+  .co-metrics .m{flex:1;padding:12px 16px;border-right:1px solid var(--line);}
+  .co-metrics .m:last-child{border-right:none;}
+  .co-metrics .ml{font-size:11px;color:var(--faint);margin-bottom:4px;}
+  .co-metrics .mv{font-size:16px;font-weight:900;color:var(--ink);line-height:1.35;}
+  .co-metrics .mv .pill{margin-left:4px;}
+  .co-metrics .ms{font-size:11.5px;color:var(--muted);margin-top:2px;font-weight:400;}
+
+  .co-field{margin-bottom:12px;}
+  .co-field .fl{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-bottom:3px;}
+  .co-field p{font-size:14px;color:var(--body);line-height:1.75;margin:0;}
+  .co-strength{list-style:none;margin:0;}
+  .co-strength li{position:relative;padding:3px 0 3px 20px;font-size:14px;line-height:1.7;}
+  .co-strength li::before{content:'';position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+
+  .co-link{margin-top:16px;}
+  .co-link a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:8px;transition:all .15s;}
+  .co-link a:hover{background:var(--accent);color:#fff;}
+  .co-link .u{font-size:12px;color:var(--faint);margin-left:10px;font-weight:400;}
+  .co-link a:hover .u{color:#fff;}
+
+  .note{background:var(--amber-soft);border-radius:8px;padding:8px 14px;font-size:12.5px;color:var(--amber);margin-top:12px;line-height:1.6;}
+
+  footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.8;}
+  .botnav{margin:40px 0 0;}
+  .botnav a{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 24px;border-radius:10px;}
+  .botnav a:hover{background:var(--accent);}
+
+  @media print{body{background:#fff;font-size:12px;}.page{box-shadow:none;max-width:none;padding:0 8mm;}.topnav{position:static;}section,.co{break-inside:avoid;}}
+  @media(max-width:680px){.page{padding:0 20px 60px;}.cover h1{font-size:27px;}.co-metrics{flex-direction:column;}.co-metrics .m{border-right:none;border-bottom:1px solid var(--line);}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topnav">
+  <a class="back" href="index.html">← レポート本編にもどる</a>
+  <span class="where">事例集（ページ 2 / 2）</span>
+</div>
+
+<div class="cover">
+  <div class="eyebrow">株式会社 buzz ／ バズコミット 戦略リサーチ ─ 事例集</div>
+  <h1>7ジャンルの代表企業 21社<br>集客・年商・成長率・キャッチコピー</h1>
+  <p class="lead">レポート本編で扱った7つの市場それぞれについて、その事業の代表格となっている3社をピックアップ。各社が「どうやって顧客を集めているか（集客方法）」「年商と成長率」「強み」「掲げているキャッチコピー」をまとめた。会社名の下のボタンから公式サイトへ飛べる。</p>
+  <div class="meta">調査基準日 2026年6月27日　｜　<span class="pill fact">公表</span> IR・公式等の一次資料で確認　／　<span class="pill est">推定</span> 取引社数・調達額・客数×単価等からの試算。キャッチコピーは全社、公式サイトで実物を確認。</div>
+</div>
+
+<!-- ============ G1 SNS運用代行 ============ -->
+<section id="g1">
+  <div class="sec-head"><span class="sec-no">① SNS運用代行</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">上場大手／独立系ツール型／特化急成長</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社サイバー・バズ</span><span class="co-note">東証グロース 7069</span></div>
+    <div class="co-copy"><span class="qlabel">スローガン</span>「コミュニケーションを価値に変え、世の中を変える。」<b>／ MOVE THE WORLD with communication</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">約70億円 <span class="pill fact">公表</span><div class="ms">2025年9月期・全社</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--red);">−6.2%<div class="ms">前期は+29.6%（74.6億）</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">統合型・大手<div class="ms">運用代行は事業の一部</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>上場企業としてのIR・プレスリリース発信、インフルエンサーネットワーク（NINARY＝約1,000人）を入口にした認知獲得、元サイバーエージェント子会社の出自を活かした広告主への法人ダイレクト営業。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>インフルエンサー施策・SNS運用・ネット広告のワンストップ提供</li><li>人気インスタグラマー約1,000人を組織化したネットワーク規模</li><li>上場企業の信頼性とステマ規制対応・全件チェック体制</li></ul></div>
+    <div class="co-link"><a href="https://www.cyberbuzz.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">cyberbuzz.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">テテマーチ株式会社</span><span class="co-note">非上場・独立系</span></div>
+    <div class="co-copy"><span class="qlabel">DNA／ミッション</span>「サキダチ、ヤクダツ。」<b>／ BEYOND THE ALGORITHM!</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">10〜20億円規模 <span class="pill est">推定</span><div class="ms">絶対額は非公表</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">6年連続 増収<div class="ms">2021年度 +22%（公表）</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">ツール×制作<div class="ms">Instagram特化</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>オウンドメディア「インスタアンテナ」で専門家ポジションを確立し、自社SaaS「SINIS（アカウント連携5万件超）」の利用者を運用コンサルへ送客。アドテック登壇や自社カンファレンス「SPOTLIGHT」も活用。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>自社開発の分析ツールSINIS（数十億規模の実データ）でデータドリブン運用</li><li>クリエイターコミュニティ「餅屋」による内製クリエイティブ力</li><li>資生堂・電通・キリン等の大手ナショナルクライアント基盤</li></ul></div>
+    <div class="co-link"><a href="https://tetemarche.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">tetemarche.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社SAKIYOMI</span><span class="co-note">エフ・コード(9211)子会社</span></div>
+    <div class="co-copy"><span class="qlabel">主訴求コピー</span>「SNS運用のプロ集団」<b>／ 平均4.2か月で10,000フォロワー達成</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">十数億円規模 <span class="pill est">推定</span><div class="ms">単体非開示・グループ(BUZZ込)</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">急成長<div class="ms">5年で従業員200倍超</div></div></div>
+      <div class="m"><div class="ml">料金</div><div class="mv">月額35万円〜<div class="ms">運用代行（公式明示）</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>YouTube・オウンドメディア・note・公式Instagram（運用データを発信）でのコンテンツマーケが中核。ホワイトペーパー→インサイドセールスのBtoBリード獲得モデルで「月間1,000リード」を公表。書籍出版・共催セミナーで権威付け。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>累計100社超・350万フォロワーの運用データから勝ちメソッドを体系化</li><li>「集客メディア」として設計するコンテンツマーケ型運用（売上直結）</li><li>上場グループ（エフ・コード）の資本・経営支援と品質担保体制</li></ul></div>
+    <div class="co-link"><a href="https://sns-sakiyomi.com/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">sns-sakiyomi.com</span></div>
+  </div>
+</section>
+
+<!-- ============ G2 インフルエンサーPR ============ -->
+<section id="g2">
+  <div class="sec-head"><span class="sec-no">② インフルエンサーPR</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">事務所型／アプリ型／縦型動画特化</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">UUUM株式会社</span><span class="co-note">フリークアウトHD傘下（2025/2上場廃止）</span></div>
+    <div class="co-copy"><span class="qlabel">経営理念</span>「想いの熱量でセカイを切り拓く」<b>／ Expand the World with Great Zeal</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">275.9億円 <span class="pill fact">公表</span><div class="ms">2024/9期(16ヶ月)・25期予219億</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">横ばい〜微減<div class="ms">YouTube単価低下が逆風</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">YouTuber事務所(MCN)<div class="ms">提携 約1万人規模</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>子会社UUUMマーケティングが法人窓口。HIKAKIN等のトップクリエイターを抱える事務所モデルを武器にタイアップを直接受注。キャンペーン設計→広告配信→レポートまでワンストップ提案営業。年間5,000本超の実績を訴求。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>日本最大級のトップYouTuber保有という参入障壁</li><li>企画〜手配〜配信〜レポート〜コンプラチェックの内製ワンストップ</li><li>上場企業水準のガバナンスで大企業が安心して発注できる</li></ul></div>
+    <div class="co-link"><a href="https://www.uuum.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">uuum.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社トリドリ</span><span class="co-note">東証グロース 9337</span></div>
+    <div class="co-copy"><span class="qlabel">スローガン</span>「『個の時代』の、担い手に。」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">53.7億円 <span class="pill fact">公表</span><div class="ms">2025/12期・26期予72億</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">+25.7%<div class="ms">3社で最も高成長・増益継続</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">アプリ型PF<div class="ms">マイクロ中心</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>2つのアプリが軸。インフルエンサー側「toridori base（登録9万人超）」と法人側「toridori marketing」をマッチング。月額4万円〜・起用無制限のセルフサーブ型サブスクが中核で、累計マッチング6.1万件超。インサイドセールス専門会社も設立。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>アプリ＝プラットフォーム型で大量マッチングを自動化（低い限界費用）</li><li>マイクロインフルエンサー9万人超の圧倒的母数で価格対応力</li><li>月額サブスク×起用無制限のわかりやすい料金で初心者企業を取り込む</li></ul></div>
+    <div class="co-link"><a href="https://toridori.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">toridori.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社TORIHADA</span><span class="co-note">非上場</span></div>
+    <div class="co-copy"><span class="qlabel">パーパス／ミッション</span>「意思ある個人による新しい経済をつくる」<b>／ 日本一のクリエイターエコノミーカンパニーになる</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">約30億円 <span class="pill est">推定</span><div class="ms">非開示（業界取材ベース）</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">不明<div class="ms">先行投資で純損失拡大中</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">縦型動画特化<div class="ms">クリエイター5,000人超</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>縦型動画（TikTok／YouTubeショート／Reels）特化の広告代理＋制作。子会社PPP STUDIO（登録約3,000組）の供給力で受注〜企画〜制作〜配信を一貫内製。「TateChalle」「Smart UGC」等のパッケージ商品を次々投入し、媒体タイアップ実績で集客。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>TikTok黎明期からの縦型/ショート動画特化の専門性</li><li>国内最大規模の縦型動画クリエイターエージェントPPP STUDIO</li><li>制作〜運用型広告配信〜PDCAの内製ワンストップ＋豊富なパッケージ</li></ul></div>
+    <div class="note">※「再生保証型の代表格」という当初の想定は一次情報で裏取りできず。実態は「縦型／ショート動画特化マーケの代表格」。</div>
+    <div class="co-link"><a href="https://www.torihada.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">torihada.co.jp</span></div>
+  </div>
+</section>
+
+<!-- ============ G3 UGC制作 ============ -->
+<section id="g3">
+  <div class="sec-head"><span class="sec-no">③ UGC制作事業</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">素材プラットフォーム／自社メディア型／実績最大手</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">identify株式会社（DeLMO）</span><span class="co-note">非上場・UGC量産ど真ん中</span></div>
+    <div class="co-copy"><span class="qlabel">ビジョン</span>「すべてがアイデンティティになる時代をつくろう」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">非開示 <span class="pill est">不明</span><div class="ms">素材16万本／使用率25%突破</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">高成長<div class="ms">DeLMO売上350%成長（過去値）</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">素材プラットフォーム<div class="ms">縦型ショート専業</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>DeLMO for Adへのプラットフォーム型自己集客。広告代理店・EC/D2Cが「縦型ショート素材を低コストで集めたい」ニーズで来訪。ByteDance（TikTok for Business）と業務提携、PR TIMES等での高頻度発信。株主にPR大手ベクトル。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>1,000名超の一般クリエイターが撮った縦型素材を16万本以上ストック</li><li>素材ごとに広告実績を調べられる機能（特許出願済・CPA改善実証）</li><li>TikTok Shop特化システム等への周辺サービス拡張</li></ul></div>
+    <div class="co-link"><a href="https://corp.identify.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">corp.identify.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社FinT</span><span class="co-note">非上場・若年層SNS</span></div>
+    <div class="co-copy"><span class="qlabel">タグライン／パーパス</span>「SNSを起点とした若年層マーケティングソリューションカンパニー」<b>／ みんなの強みを活かして、日本を世界を前向きに。</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">非開示 <span class="pill est">不明</span><div class="ms">累計300社超</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">毎年150%以上 <span class="pill fact">公表</span><div class="ms">＝YoY +50%以上</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">自社メディア型<div class="ms">Z世代女性特化</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>自社運営メディア「Sucle（シュクレ）」（SNS総フォロワー87〜100万）が最大の営業資産。「王様のブランチ」「news23」「日経クロストレンド」等のメディア露出、大手代理店向け勉強会、KDDI・アサヒビール等の大手事例公開で指名・紹介を獲得。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>メンバーの8割以上がSNSネイティブ（平均25〜26歳）の企画力</li><li>100万人規模の自社メディアでUGC創出ノウハウを実証済み</li><li>認知〜購買〜ファン化までSNS起点で一気通貫（UGC数を指標化）</li></ul></div>
+    <div class="co-link"><a href="https://fint.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">fint.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">LIDDELL株式会社（リデル）</span><span class="co-note">非上場・実績最大手</span></div>
+    <div class="co-copy"><span class="qlabel">スローガン</span>「PERSONAL POWER TO THE PEOPLE（人を基軸としたマーケティングに飛び込もう）」<b>／ 実績7,000社以上</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">数十億円規模 <span class="pill est">推定</span><div class="ms">売上は非開示</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">非開示<div class="ms">不明</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">インフルエンサー基盤<div class="ms">5万人／7.3億フォロワー</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>トヨタ・KDDI・資生堂・ソニー等の「7,000社」実績を前面に出すブランディング。自社SaaS（INFLUFECT・COMMUDA・生成AI「KAL」等）経由のリード獲得、オウンドメディア／PR、官公庁・自治体・大学への横展開。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>取引7,000社超・所属インフルエンサー5万人の圧倒的基盤</li><li>自社開発のテック基盤（AI／Web3／クラウドワーカー）で半自動運用</li><li>新規開拓→ファンコミュニティ化→AI最適化の自己成長型エコシステム</li></ul></div>
+    <div class="note">※純粋なUGC量産納品の度合いは identify が最も高い。FinT・LIDDELLは「自社メディア／インフルエンサー施策」寄りで、UGC創出に強い隣接プレイヤー。</div>
+    <div class="co-link"><a href="https://liddell.tokyo/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">liddell.tokyo</span></div>
+  </div>
+</section>
+
+<!-- ============ G4 広告運用代行 ============ -->
+<section id="g4">
+  <div class="sec-head"><span class="sec-no">④ 広告運用代行</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">情報発信型のエンタープライズ／老舗／成長企業</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">アナグラム株式会社</span><span class="co-note">フィードフォースG(7068)傘下</span></div>
+    <div class="co-copy"><span class="qlabel">キャッチコピー</span>「会社の隠れた魅力を発掘し ビジネスにつなげる伴走者 それが、アナグラム」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">25〜30億円 <span class="pill est">推定</span><div class="ms">単体最新は連結内・非開示</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">親会社連結+3.4%<div class="ms">過去(2017→19)は年+50〜60%</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">情報発信型<div class="ms">エンタープライズ中心</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>運用型広告業界で最大級の情報量を誇るオウンドメディア／ブログでのSEO集客が中核（GA4・各媒体・クリエイティブを網羅。ChatGPT広告解説なども）。関連メディア「Marketeer」運営、書籍出版、定期セミナー、媒体認定バッジで信頼訴求。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>媒体最上位認定の網羅（Google Premier Partner＝上位3%等7媒体超）</li><li>業界トップクラスの情報発信力によるブランドと指名流入</li><li>運用＋インハウス支援＋クリエイティブまでの広い支援領域</li></ul></div>
+    <div class="co-link"><a href="https://anagrams.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">anagrams.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社キーワードマーケティング</span><span class="co-note">ベクトル(6058)子会社</span></div>
+    <div class="co-copy"><span class="qlabel">ミッション</span>「誰かの人生の、分岐点をつくる。」<b>／ 運用型広告で、モノやサービスとの素敵な出会いを創造します。</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">20億円台後半 <span class="pill est">推定</span><div class="ms">2022/3期27.3億(公表)以降非開示</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">非開示<div class="ms">子会社化後は単体非開示</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">老舗（2004〜）<div class="ms">中堅〜大手・幅広い業種</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>看板施策はオウンドメディア「キーマケのブログ」。創業時から運用型広告コンテンツを継続発信しSEO経由でリード獲得（外部分析で「業績258%UPに貢献」と評価）。創業者の書籍（5万部超）やセミナー「キーワードマーケティング研究会」も活用。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>約20年・1,500社以上／150業種以上の支援実績と老舗ブランド</li><li>メソッド標準化＋東京本社(戦略)と九州佐賀支社(運用)の分業体制</li><li>Google・Yahoo!・Meta・Criteo・TikTokの正規代理店認定</li></ul></div>
+    <div class="co-link"><a href="https://www.kwm.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">kwm.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">デジタルアスリート株式会社</span><span class="co-note">旧リスティングプラス</span></div>
+    <div class="co-copy"><span class="qlabel">ミッション</span>「すべての挑戦を 更なる高みへ」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">10億円台後半 <span class="pill est">推定</span><div class="ms">2023/6期11.25億(公表)</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">連続増益（自称）<div class="ms">累計2,425社支援</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">コンテンツ集客型<div class="ms">中小〜成長企業</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>YouTube（「デジアスTV」「マーケ脳社長」等の複数チャンネル）が強力な集客チャネル。セミナー多数、書籍出版、お役立ち資料DL、公式ブログでのコンテンツ集客。「当日の電話でも最大30分で改善方針を提案」など即応型のインサイドセールス導線。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>YouTube・書籍・セミナーを軸にしたコンテンツマーケの突出</li><li>運用＋LP/動画制作＋インハウス支援＋人材派遣まで一気通貫</li><li>Premier Google Partner等の認定と累計2,425社の支援実績</li></ul></div>
+    <div class="co-link"><a href="https://ppc-master.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">ppc-master.jp</span></div>
+  </div>
+</section>
+
+<!-- ============ G5 クリエイティブ制作 ============ -->
+<section id="g5">
+  <div class="sec-head"><span class="sec-no">⑤ 広告クリエイティブ制作</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">SaaS型／AI×職人型／受託プラットフォーム型</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社リチカ</span><span class="co-note">非上場・SaaS型</span></div>
+    <div class="co-copy"><span class="qlabel">ミッション</span>「Switch to The RICH. クリエイティブで、世界を豊かに。」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">十数億円規模 <span class="pill est">推定</span><div class="ms">非開示（SaaS型・赤字縮小中）</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">非開示<div class="ms">損失は▲6.8億→▲3.7億へ縮小</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">SaaS＋伴走<div class="ms">累計制作50万本超</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>SaaS「リチカ クラウドスタジオ」のインバウンド／プロダクト主導が中核。広告意識調査などのオウンドメディア・調査リリース、Yahoo!・Meta・TikTokとの共同研究による「アルゴリズム最新対応」訴求、伴走型サービスでのアップセル。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>SaaS＋専門家伴走のハイブリッド（顧客満足度90%以上を標榜）</li><li>2,000社・累計50万本のテンプレート／フォーマット資産</li><li>主要広告プラットフォームとの共同研究体制とAI新サービス</li></ul></div>
+    <div class="co-link"><a href="https://richka.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">richka.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社ガラパゴス（AIR Design）</span><span class="co-note">非上場・AI型</span></div>
+    <div class="co-copy"><span class="qlabel">サービスコピー／理念</span>「LP・バナー劇的改善」<b>／ プロセスとテクノロジーで人をよりヒトらしく</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">十数億円規模 <span class="pill est">推定</span><div class="ms">非開示・赤字フェーズ</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--red);">縮小局面<div class="ms">従業員189名(23)→165名(26)</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">AI×職人<div class="ms">導入1,000社超</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>オウンド＋セミナー＋資料ダウンロード型のインバウンド。サイトで「広告費月100万円以上の企業向け」とターゲットを明示しリード質を最適化。豊富な導入事例でCVR改善実績を訴求、新規「Galapagos AI」で既存顧客へクロスセル。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>「AI×職人（人）」のハイブリッド制作体制</li><li>月間200万件超のクリエイティブデータ解析基盤（売上貢献まで可視化）</li><li>祖業のアプリ受託で培った技術力を生成AI事業へ展開</li></ul></div>
+    <div class="note">※「ピーク78億から縮小」という前提は誤り。78億は招聘役員の前職の数字で、ガラパゴス本体は十数億円規模＋組織縮小局面。</div>
+    <div class="co-link"><a href="https://airdesign.ai/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">airdesign.ai</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">Crevo株式会社</span><span class="co-note">非上場・受託＋PF</span></div>
+    <div class="co-copy"><span class="qlabel">理念／訴求</span>「すべての表現者の無限の可能性を解放する」<b>／ 2,000社10,000件以上の制作実績で課題解決にコミット</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">数億〜10億円 <span class="pill est">推定</span><div class="ms">非開示・減資/事業譲渡あり</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">非開示<div class="ms">VideoWorks譲渡で再集中</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">受託動画制作<div class="ms">用途特化に展開</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>SEOに強いオウンドメディア「VIDEO SQUARE」や用途別・価格帯別のサービスLP群でのインバウンド。価格帯を明示した見積もり導線（50万以下〜300万超）、第三者調査のNo.1・受賞訴求。近年は採用動画・SNSショート動画など用途特化で開拓。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>2,000社・10,000件超の制作実績とクリエイターネットワーク</li><li>低価格×高品質を実現する制作プラットフォーム運用ノウハウ</li><li>動画から周辺（LP・サイト・広告運用）までワンストップ対応</li></ul></div>
+    <div class="co-link"><a href="https://crevo.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">crevo.jp</span></div>
+  </div>
+</section>
+
+<!-- ============ G6 採用支援 ============ -->
+<section id="g6">
+  <div class="sec-head"><span class="sec-no">⑥ 採用支援サービス</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">博報堂系／採用広報の草分け／コンテンツ集客型</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社No Company</span><span class="co-note">博報堂グループ・スパイスボックス傘下</span></div>
+    <div class="co-copy"><span class="qlabel">メインコピー</span>「スタイルで、人から選ばれる組織へ。」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">数億〜10億円 <span class="pill est">推定</span><div class="ms">非開示・2024過去最高</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">毎年150%超 <span class="pill fact">公表</span><div class="ms">取引100社突破・社員倍増</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">採用マーケ特化<div class="ms">大手エンタープライズ</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>親会社・博報堂グループ／スパイスボックス経由の大手顧客基盤（パナソニック等）。オウンドメディア・ウェビナーの多用、代表・秋山氏の発信力（日経クロストレンド連載、書籍『採用の新基準』、HRカンファレンス登壇）でソートリーダーシップ型に引き合いを獲得。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>博報堂グループ唯一の採用マーケティング特化という出自と信頼性</li><li>SNSデータ分析ノウハウ（企業の「B面」を魅せる手法）</li><li>戦略設計→コンテンツ制作→プロモーションまでワンストップ</li></ul></div>
+    <div class="co-link"><a href="https://www.no-company.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">no-company.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">talentbook株式会社</span><span class="co-note">旧PR Table・非上場</span></div>
+    <div class="co-copy"><span class="qlabel">タグライン／Vision</span>「一人のキャリアが、誰かの人生を動かす。」<b>／ 働く人の笑顔が"連鎖する"世界をつくる</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">十数億円規模 <span class="pill est">推定</span><div class="ms">非開示・累計1,200社超</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">約2倍（23→24） <span class="pill fact">公表</span><div class="ms">日経225の約20%が利用</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">SaaS＋支援<div class="ms">採用広報の草分け</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>SaaS「talentbook」を軸としたインバウンド＋伴走型営業。オウンドメディア／ホワイトペーパー／ウェビナー、自社イベント「採用マーケティングMeetup」での法人リード獲得。累計1,200社・日経225の約20%への支援実績を信頼材料に。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>「働く人」を起点にした採用広報の草分け・先行者（2014年〜）</li><li>企画→制作→配信→データ計測のPDCAをワンストップ＋AI</li><li>ロールモデル就活メディアを自社保有し求職者リーチまで一気通貫</li></ul></div>
+    <div class="co-link"><a href="https://talentbook.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">talentbook.co.jp</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">HeaR株式会社</span><span class="co-note">非上場・実務密着型</span></div>
+    <div class="co-copy"><span class="qlabel">ミッション</span>「青春の大人を増やす。」<b>／ 企業の採用力向上を支援</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">数億円規模 <span class="pill est">推定</span><div class="ms">非開示・前期は黒字</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv">非開示<div class="ms">120社超を支援</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">RPO＋コンサル<div class="ms">スタートアップ〜中堅</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>強力なオウンドメディア／ホワイトペーパー型インバウンドが集客エンジン（「採用ブランディングの教科書」「採用ピッチ資料事例120選」等の無料資料DL→HubSpotでナーチャリング）。ウェビナー多数、採用ノウハウブログでのSEO集客。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>採用ブランディング＋RPO＋採用CX＋組織開発のワンストップ</li><li>採用版データ分析ツール「HITOME」等のSaaSプロダクト保有</li><li>圧倒的なコンテンツ量によるインバウンド集客力</li></ul></div>
+    <div class="co-link"><a href="https://www.hear.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">hear.co.jp</span></div>
+  </div>
+</section>
+
+<!-- ============ G7 成果報酬型 ============ -->
+<section id="g7">
+  <div class="sec-head"><span class="sec-no">⑦ 成果報酬型マーケ支援</span><h2 class="sec-title">代表3社</h2><span class="sec-sub">成長中の旗手／老舗ASP2強</span></div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社Macbee Planet</span><span class="co-note">東証プライム 7095</span></div>
+    <div class="co-copy"><span class="qlabel">コーポレートメッセージ</span>「LTVマーケティングなら株式会社Macbee Planet」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">516.75億円 <span class="pill fact">公表</span><div class="ms">2025年4月期・過去最高益</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">+31%<div class="ms">上場来 平均年率約52%</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">成果報酬型コンサル<div class="ms">リスク肩代わり</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>ダイレクトな法人営業＋コンサルティング型提案が主体。成果地点を「契約・利用」に設定しクライアントの費用対効果を実質保証。M&A（ネットマーケティング、PRクラウドテック等）で顧客基盤・人材を獲得し、タクシー広告で経営層の認知も取る。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>成果報酬型に特化し、広告主のリスクを肩代わりする低リスクモデル</li><li>創業来のデータ蓄積×テクノロジー（上位20社の継続率88%）</li><li>ファイナンス・ウェルネス特化＋認知〜獲得〜継続のワンストップ</li></ul></div>
+    <div class="co-link"><a href="https://macbee-planet.com/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">macbee-planet.com</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">株式会社ファンコミュニケーションズ</span><span class="co-note">東証プライム 2461・A8.net</span></div>
+    <div class="co-copy"><span class="qlabel">ビジョン</span>「PRODUCER＋CONSUMER ＝ プロシューマー・ハピネス」<b>／ 世界中の誰もが消費も生産も楽しめる未来へ</b></div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">71.0億円 <span class="pill fact">公表</span><div class="ms">2025/12期 ※純額会計</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--green);">+1.9%<div class="ms">営業利益は+23%回復</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">老舗ASP（1999〜）<div class="ms">A8.net運営</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>中核はASP「A8.net」の両面ネットワーク効果。多数の登録メディアが広告主を惹きつけ、広告主の多さがメディアを惹きつける。広告主は直接営業・代理店経由、メディア（プロシューマー）はセルフ登録型インバウンドが中心。カンファレンス登壇も。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>国内最大級アフィリエイトASP「A8.net」の規模とブランド＝参入障壁</li><li>成果報酬型広告の老舗としての運用ノウハウとデータ</li><li>ファン／インフルエンサーマーケへの「プロシューマー支援」拡張</li></ul></div>
+    <div class="note">※2022年12月期から純額会計に変更され売上の絶対額は小さく見える（事業縮小ではない）。規模感はA8.netの取扱高で見るのが実態に近い。</div>
+    <div class="co-link"><a href="https://www.fancs.com/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">fancs.com</span></div>
+  </div>
+
+  <div class="co">
+    <div class="co-head"><span class="co-name">バリューコマース株式会社</span><span class="co-note">東証プライム 2491</span></div>
+    <div class="co-copy"><span class="qlabel">企業理念</span>「正しい情報を効率的につなぎ、多様な選択ができる豊かな社会の実現を目指す」</div>
+    <div class="co-metrics">
+      <div class="m"><div class="ml">年商</div><div class="mv">241.7億円 <span class="pill fact">公表</span><div class="ms">2025/12期</div></div></div>
+      <div class="m"><div class="ml">売上成長率</div><div class="mv" style="color:var(--red);">−20.5%<div class="ms">26期予144億・営業赤字</div></div></div>
+      <div class="m"><div class="ml">タイプ</div><div class="mv">老舗ASP（1999〜）<div class="ms">EC送客に強み</div></div></div>
+    </div>
+    <div class="co-field"><div class="fl">集客方法</div><p>中核はASP「バリューコマース アフィリエイト」の両面プラットフォーム。旧Yahoo!／LINEヤフー経済圏（PayPay・Yahoo!ショッピング等のEC送客）との連携が伝統的強み兼集客源。広告主向け直接営業＋AI検索時代向けの新サービス提案で開拓。</p></div>
+    <div class="co-field"><div class="fl">強み</div><ul class="co-strength"><li>日本初・老舗のアフィリエイトネットワークと大手EC広告主基盤</li><li>EC領域（コマース）への強さと送客実績</li><li>アフィリエイト＋トラベルテック等への事業ポートフォリオ多角化</li></ul></div>
+    <div class="note">※主要サービス（ECソリューションズ事業）終了の影響で2025〜2026は減収・再構築局面。アフィリエイト本業自体は増収を維持。</div>
+    <div class="co-link"><a href="https://www.valuecommerce.co.jp/" target="_blank" rel="noopener">公式サイトを開く ↗</a><span class="u">valuecommerce.co.jp</span></div>
+  </div>
+</section>
+
+<div class="botnav"><a href="index.html">← レポート本編（市場規模・到達上限・10億の柱）にもどる</a></div>
+
+<footer>
+  株式会社 buzz ／ バズコミット 戦略リサーチ ─ 事例集　｜　7ジャンル代表21社　｜　調査基準日 2026年6月27日<br>
+  年商・成長率は出典を明記した公表値と、取引社数・調達額等からの推定値を区別して記載。非上場企業の多くは売上を非開示としており、その場合は「推定」または「不明」と明示している。各社キャッチコピーは公式サイトで実物を確認した。
+</footer>
+
+</div>
+</body>
+</html>

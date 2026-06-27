@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>棚商品ポテンシャル徹底調査 — バズコミット 10億トップライン戦略</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap');
+
+  :root{
+    --ink:#1b2330;
+    --body:#2c3644;
+    --muted:#6b7686;
+    --faint:#9aa4b2;
+    --accent:#2f6f9f;
+    --accent-soft:#eef4f9;
+    --line:#e6eaef;
+    --line-soft:#eef1f5;
+    --green:#2e8b6b;
+    --green-soft:#eaf5f0;
+    --amber:#b9802e;
+    --amber-soft:#fbf3e6;
+    --red:#c0563f;
+    --bg:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--body);
+    background:#f3f5f8;
+    line-height:1.95;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:820px;margin:0 auto;background:var(--bg);
+    padding:0 64px 110px;
+    box-shadow:0 1px 40px rgba(20,30,50,.06);
+  }
+
+  /* cover */
+  .cover{padding:80px 0 44px;border-bottom:1px solid var(--line);margin-bottom:54px;}
+  .eyebrow{font-size:13px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:22px;}
+  .cover h1{
+    font-family:'Noto Serif JP',serif;font-weight:700;color:var(--ink);
+    font-size:42px;line-height:1.35;letter-spacing:.01em;margin-bottom:20px;
+  }
+  .cover .lead{font-size:17px;color:var(--muted);line-height:1.9;max-width:660px;}
+  .cover .meta{margin-top:30px;font-size:13.5px;color:var(--faint);display:flex;gap:26px;flex-wrap:wrap;}
+  .cover .meta b{color:var(--muted);font-weight:700;}
+
+  /* toc */
+  .toc{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:24px 30px;margin-bottom:60px;}
+  .toc h2{font-size:13px;letter-spacing:.12em;color:var(--faint);font-weight:700;margin-bottom:14px;}
+  .toc ol{list-style:none;counter-reset:t;columns:2;column-gap:40px;}
+  .toc li{counter-increment:t;font-size:14.5px;padding:5px 0;break-inside:avoid;}
+  .toc li a{color:var(--body);text-decoration:none;border-bottom:1px solid transparent;}
+  .toc li a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+  .toc li::before{content:counter(t,decimal-leading-zero);color:var(--accent);font-weight:700;font-size:12px;margin-right:10px;}
+
+  /* sections */
+  section{margin-bottom:64px;scroll-margin-top:24px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+  .sec-no{font-size:13px;font-weight:900;color:var(--accent);letter-spacing:.05em;}
+  h2.sec-title{font-family:'Noto Serif JP',serif;font-size:27px;font-weight:700;color:var(--ink);line-height:1.4;}
+  h3{font-size:18px;font-weight:700;color:var(--ink);margin:34px 0 12px;}
+  h4{font-size:15px;font-weight:700;color:var(--accent);margin:24px 0 6px;letter-spacing:.02em;}
+  p{margin-bottom:16px;}
+  strong{font-weight:700;color:var(--ink);}
+  a{color:var(--accent);}
+  .text-muted{color:var(--muted);}
+  .cross-nav{margin:30px 0 4px;}
+  .cross-nav a{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 24px;border-radius:10px;transition:background .15s;}
+  .cross-nav a:hover{background:var(--accent);}
+  .cross-nav .arrow{font-size:18px;}
+
+  .lead-p{font-size:17.5px;line-height:2;color:var(--ink);margin-bottom:24px;}
+
+  /* callout */
+  .callout{background:var(--accent-soft);border-radius:12px;padding:24px 28px;margin:26px 0;}
+  .callout.green{background:var(--green-soft);}
+  .callout.amber{background:var(--amber-soft);}
+  .callout .k{display:block;font-size:12px;letter-spacing:.1em;font-weight:700;margin-bottom:8px;color:var(--accent);}
+  .callout.green .k{color:var(--green);}
+  .callout.amber .k{color:var(--amber);}
+  .callout p:last-child{margin-bottom:0;}
+
+  /* pills */
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 9px;border-radius:20px;vertical-align:middle;white-space:nowrap;}
+  .pill.fact{background:var(--green-soft);color:var(--green);}
+  .pill.est{background:var(--amber-soft);color:var(--amber);}
+
+  /* tables */
+  .tbl-wrap{margin:22px 0;overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.6;}
+  thead th{
+    text-align:left;font-weight:700;color:var(--ink);
+    border-bottom:2px solid var(--ink);padding:10px 14px 10px 0;font-size:13px;
+  }
+  tbody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--body);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  th.c,td.c{text-align:center;padding-right:0;}
+
+  /* data strip for each product */
+  .strip{display:flex;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 30px;}
+  .strip .cell{flex:1;padding:16px 20px;border-right:1px solid var(--line);}
+  .strip .cell:last-child{border-right:none;}
+  .strip .cell .l{font-size:11.5px;color:var(--faint);letter-spacing:.04em;margin-bottom:5px;}
+  .strip .cell .v{font-size:20px;font-weight:900;color:var(--ink);line-height:1.3;}
+  .strip .cell .s{font-size:12px;color:var(--muted);margin-top:3px;}
+
+  /* eval inline */
+  .fit{display:inline-flex;align-items:center;gap:8px;font-weight:700;}
+  .badge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:900;font-size:16px;flex-shrink:0;}
+  .b-aa{background:var(--green);}.b-a{background:var(--accent);}.b-b{background:var(--amber);}.b-c{background:var(--faint);}
+
+  ul.clean{list-style:none;margin:6px 0 16px;}
+  ul.clean li{position:relative;padding:5px 0 5px 22px;}
+  ul.clean li::before{content:'';position:absolute;left:3px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+
+  /* ranking */
+  .rank{display:flex;gap:18px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--line);}
+  .rank:last-of-type{border-bottom:none;}
+  .rank .rn{font-family:'Noto Serif JP',serif;font-size:40px;font-weight:700;color:var(--accent);line-height:1;width:48px;flex-shrink:0;}
+  .rank h3{margin:0 0 6px;}
+  .rank .tag{font-size:12.5px;font-weight:700;color:var(--muted);margin-left:10px;}
+
+  .product-label{font-size:12px;letter-spacing:.08em;color:var(--accent);font-weight:700;}
+  .divider{height:1px;background:var(--line);margin:0 0 0;}
+
+  footer{margin-top:70px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.8;}
+
+  @media print{
+    body{background:#fff;font-size:12px;}
+    .page{box-shadow:none;max-width:none;padding:0 8mm;}
+    .toc{break-inside:avoid;}
+    section{break-inside:avoid;}
+  }
+  @media(max-width:680px){
+    .page{padding:0 22px 60px;}
+    .cover h1{font-size:30px;}
+    .toc ol{columns:1;}
+    .strip{flex-direction:column;}
+    .strip .cell{border-right:none;border-bottom:1px solid var(--line);}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="eyebrow">株式会社 buzz ／ バズコミット 戦略リサーチ</div>
+  <h1>棚商品ポテンシャル徹底調査<br>7商品は「何億まで」伸ばせるか</h1>
+  <p class="lead">バズが束ねる7つの法人向け商品それぞれについて、近い会社の実売上と成功要素から「現実的にどこまで伸びるか」を逆算する。判断の軸は一貫して、母体バズカレッジの<strong>生徒供給網（毎月400人）と教育パイプライン</strong>という固有資産がその商品で効くかどうか。</p>
+  <div class="meta">
+    <span><b>調査基準日</b>　2026年6月27日</span>
+    <span><b>目標</b>　事業全体トップライン 年商10億円</span>
+    <span><b>凡例</b>　<span class="pill fact">公表</span> 一次資料で確認 ／ <span class="pill est">推定</span> ロジック付き試算</span>
+  </div>
+  <div class="cross-nav"><a href="companies.html"><span class="arrow">▶</span>事例集：7ジャンルの代表21社（集客方法・年商・成長率・キャッチコピー）を見る　→</a></div>
+</div>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#summary">結論サマリー</a></li>
+    <li><a href="#map">7商品 市場規模マップ</a></li>
+    <li><a href="#p1">① SNS運用代行</a></li>
+    <li><a href="#p2">② インフルエンサーPR</a></li>
+    <li><a href="#p3">③ UGC制作事業</a></li>
+    <li><a href="#p4">④ 広告運用代行</a></li>
+    <li><a href="#p5">⑤ 広告クリエイティブ制作</a></li>
+    <li><a href="#p6">⑥ 採用支援サービス</a></li>
+    <li><a href="#p7">⑦ 成果報酬型マーケ支援</a></li>
+    <li><a href="#compare">横断比較表</a></li>
+    <li><a href="#ranking">結論：10億の柱ランキング</a></li>
+    <li><a href="#insights">意外な発見・盲点</a></li>
+    <li><a href="#sources">参照ソース・調査の限界</a></li>
+  </ol>
+</nav>
+
+<!-- ===== SUMMARY ===== -->
+<section id="summary">
+  <div class="sec-head"><span class="sec-no">01</span><h2 class="sec-title">結論サマリー</h2></div>
+  <p class="lead-p">バズ最大の固有資産は「毎月400人の生徒供給網（安く速く量産できるクリエイティブと人手）＋教育パイプライン」である。この強みは、<strong>"作る・運用する"労働集約系の商品ほど強く効く</strong>。逆に、プロダクト/データや高度な専門性・運転資金が要る商品では効きにくい。</p>
+  <p>この一点を軸に7商品を評価すると、10億トップラインの柱は <strong>①UGC制作 → ②SNS運用代行 → ③広告運用代行</strong> の順で攻めるのが合理的という結論になる。</p>
+
+  <div class="callout">
+    <span class="k">柱になりうる商品 TOP3</span>
+    <p style="margin-bottom:10px;"><strong>1. UGC制作</strong>　生徒網がそのまま"UGCクリエイター網"。市場は最速成長で、大型専業が不在の空白地帯。バズの強みが7商品で最も効く（適合 ◎）。</p>
+    <p style="margin-bottom:10px;"><strong>2. SNS運用代行</strong>　撮影・制作・運用を生徒が一気通貫で担える。月額ストックで積み上がり、専業が10〜24億を実証済み（適合 ◎）。</p>
+    <p><strong>3. 広告運用代行</strong>　運用自体はバズの強み外だが、"広告費の預かり"でトップラインを一気に膨らませられる。10億目標との相性は最良（適合 △→○）。</p>
+  </div>
+
+  <p>全体を貫く構造として重要なのは次の2点。第一に、追い風と強みが一致していること——最速成長は運用代行ではなく<strong>縦型ショート／UGC（年＋37〜55%）</strong>で、バズの量産網はまさにここに効く。第二に、共通リスクは<strong>単価デフレ／AIコモディティ化</strong>であり、"量産だけ"はAI-UGCに代替されていく。だからバズは"作るだけ"を売らず、<strong>必ず広告成果（CPA／CPV）に接続する</strong>ことが値崩れの防波堤になる。制作系で顧客を掴み、広告運用へアップセルして広告費を預かる——この流れが10億への最短路である。</p>
+</section>
+
+<!-- ===== MARKET MAP ===== -->
+<section id="map">
+  <div class="sec-head"><span class="sec-no">02</span><h2 class="sec-title">7商品 市場規模マップ（桁感）</h2></div>
+  <p>各商品に「最も近い一次市場」を代理指標として並べた。運用代行・クリエイティブ制作・UGC・SNS採用は単独の公式市場区分が存在しないため、関連市場で把握している。<strong>最速成長セグメントはUGC／縦型ショート動画</strong>である点に注目したい。</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>関連市場（代理指標）</th><th class="num">規模</th><th>年/年度・成長</th><th>出典</th></tr></thead>
+      <tbody>
+        <tr><td>運用型広告 <span class="text-muted">（運用代行の母体）</span></td><td class="num"><strong>2兆9,352億円</strong></td><td>2025・+12.5%</td><td>電通 2026/3</td></tr>
+        <tr><td>求人広告 <span class="text-muted">（採用支援関連）</span></td><td class="num">6,661億円</td><td>2024年度</td><td>全国求人情報協会</td></tr>
+        <tr><td>ネット広告制作費 <span class="text-muted">（クリエイティブ）</span></td><td class="num">4,922億円</td><td>2025・+4.0%</td><td>電通 2026/3</td></tr>
+        <tr><td>動画制作サービス <span class="text-muted">（UGC代理）</span></td><td class="num">4,580億円</td><td>2025年度・+8.1%</td><td>矢野経済 2025</td></tr>
+        <tr><td>人材紹介 <span class="text-muted">（採用支援関連）</span></td><td class="num">4,490億円</td><td>2024年度・+12.0%</td><td>矢野経済 2025</td></tr>
+        <tr><td>アフィリエイト <span class="text-muted">（成果報酬）</span></td><td class="num">4,382億円</td><td>2024年度・+6.5%</td><td>矢野経済 2025</td></tr>
+        <tr><td>縦型動画広告 <span style="color:var(--red);font-weight:700;">（最速）</span></td><td class="num">2,049億円</td><td>2025・<strong style="color:var(--red);">+55.9%</strong></td><td>サイバーエージェント 2026/3</td></tr>
+        <tr><td>インフルエンサーマーケ</td><td class="num">860億円</td><td>2024・+16%</td><td>サイバー・バズ 2024/11</td></tr>
+        <tr><td>SNSアカウント運用支援</td><td class="num">283億円</td><td>2024</td><td>サイバー・バズ 2024/11</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="text-muted" style="font-size:13.5px;">市場の絶対額は「運用型広告 ＞ 求人広告 ＞ 制作費・動画制作・人材紹介・アフィリエイト ＞ インフルエンサー ＞ 運用支援」の順。一方で成長率は縦型ショート／UGCが突出している。バズが取りに行くべきは「大きい市場」より「強みが効き、かつ伸びている市場」である。</p>
+</section>
+
+<!-- ===== P1 SNS運用代行 ===== -->
+<section id="p1">
+  <div class="sec-head"><span class="sec-no">03</span><h2 class="sec-title">① SNS運用代行</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--green);">◎ 強く効く</div></div>
+    <div class="cell"><div class="l">現実的到達上限</div><div class="v">3〜8億円<span class="s">単体／トップ層なら10億も</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">283億円<span class="s">運用支援・低成長</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p>SNS運用代行を単独計測した公式統計は存在しない。最も近い一次データは、SNSアカウント運用支援セグメントの <strong>283億円</strong>（2024）<span class="pill fact">公表</span>。運用支援＋キャンペーン＋ツールの合計でも451億円（2029年予測690億円）にとどまる。市場全体（SMM 1.2兆円）が年率約12%で伸びるなか、<strong>運用代行は市場平均以下の低成長（推定CAGR 6〜10%）</strong>で、調査元も「新規参入が一巡し成長期を過ぎた」とコメントしている。<span class="text-muted">出典：サイバー・バズ／デジタルインファクト 2024/11</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>企業</th><th class="num">年商</th><th>区分</th><th>補足</th></tr></thead>
+    <tbody>
+      <tr><td>サイバー・バズ</td><td class="num">SMM事業 70億円</td><td><span class="pill fact">公表</span></td><td>運用代行はSMM内に内包・単独非開示</td></tr>
+      <tr><td>ホットリンク</td><td class="num">SNS事業 19.7億円</td><td><span class="pill fact">公表</span></td><td>Instagram運用代行 月30万円〜</td></tr>
+      <tr><td>Natee</td><td class="num">年商換算 約24億円</td><td><span class="pill est">推定</span></td><td>月次売上2億を公表。TikTok/縦型特化</td></tr>
+      <tr><td>テテマーチ</td><td class="num">10〜20億円</td><td><span class="pill est">推定</span></td><td>SaaS「SINIS」併売で牽引</td></tr>
+      <tr><td>SAKIYOMI</td><td class="num">3〜6億円＋ツール</td><td><span class="pill est">推定</span></td><td>Instagram特化。業務委託約200名で供給</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>規模を作る決定的要因は、<strong>コンテンツマーケで指名を獲得しCACを下げること</strong>（SAKIYOMIはブログ・書籍・カンファレンスで第一想起を構築）、<strong>ノウハウの標準化・脱属人化</strong>、<strong>SaaS併売によるLTV化</strong>、そして<strong>業務委託活用での供給力確保</strong>。一方の天井は、採用・育成難、属人化、参入障壁の低さによるコモディティ化、解約率。単価は月15〜30万円（撮影込みで30万円〜）のストック型で、契約は3〜12か月が主流。</p>
+
+  <div class="callout green">
+    <span class="k">D. バズの強みが効くか — ◎ 強く効く</span>
+    <p>生徒が撮影・投稿制作・運用を一気通貫で担える。これは業務委託450名で供給するSAKIYOMI型に酷似しており、教育パイプラインが"標準化された戦力化"にそのまま効く。供給網そのものが最大の武器になる。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>3〜8億円（単体）。</strong>専業トップが10〜24億を実証しているが、バズが供給力で量産できる一方、営業／CAC・解約率・コモディティ化が天井になる。標準化と指名獲得の仕組みを作れればトップ層の10億も視野に入る。</p>
+</section>
+
+<!-- ===== P2 インフルエンサーPR ===== -->
+<section id="p2">
+  <div class="sec-head"><span class="sec-no">04</span><h2 class="sec-title">② インフルエンサーPR（再生保証付き）</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--green);">◎〜○ 効く</div></div>
+    <div class="cell"><div class="l">現実的到達上限</div><div class="v">3〜10億円<span class="s">マイクロ／再生保証型</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">860億円<span class="s">縦型ショートが最速</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p>インフルエンサーマーケ市場は <strong>860億円</strong>（2024、+16%）<span class="pill fact">公表</span>で、2029年に1,645億円（約1.9倍）の予測。<strong>縦型ショート動画向けが最速</strong>（246億→636億、2.6倍）。市場CAGRは約14%。<span class="text-muted">出典：サイバー・バズ／デジタルインファクト 2024/11（2025年版は未発表）。「2025年=1,021億円」は旧予測値のため最新扱いしない。</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <p>大手上場系（UUUM 275.8億円、トリドリ 53.7億円）は再生保証を主力にしていない点に注意。<strong>再生保証を商品の中核に据えるのはTikTok/ショート動画系の新興プレイヤー</strong>で、自社1,000超アカウントから一斉投稿し500万再生を保証する<strong>仙人ホールディングス（推定20億円規模）</strong>、月100万再生保証の<strong>TORIHADA（推定30〜50億円）</strong>などが該当する。サイバー・バズもIMP率保証メニューを持つ。<span class="pill est">推定</span>が中心。</p>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>KSFはキャスティング力／インフルエンサー網、業種特化（美容・金融で相場が30〜50%上振れ）、クリエイティブ品質とPDCA。再生保証モデルでは<strong>自社保有アカウント網＝"在庫"を供給できる体制</strong>が保証を成立させる決定的要因になる。天井は、単発フロー収益で継続性が弱いこと、属人営業、そして保証未達時に自社負担で配信を続ける在庫リスク。単価は施策1回50〜150万円、フォロワー単価2〜4円が相場。</p>
+
+  <div class="callout green">
+    <span class="k">D. バズの強みが効くか — ◎〜○ 効く（マイクロ／再生保証型）</span>
+    <p>生徒はマイクロインフルエンサー網／"再生在庫"として機能する（仙人HDモデルに近い）。再生保証の在庫を生徒網で供給できる構造は強い。ただし大手タイアップは属人的な営業力と有名インフルエンサー網が必要で、そこはバズの強みの外側になる。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>3〜10億円。</strong>マイクロ網＋再生保証モデルなら生徒網が効き、最速セグメントの追い風も乗る。ただし単発フロー収益の継続性の弱さが構造的な天井になる。</p>
+</section>
+
+<!-- ===== P3 UGC制作 ===== -->
+<section id="p3">
+  <div class="sec-head"><span class="sec-no">05</span><h2 class="sec-title">③ UGC制作事業</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--green);">◎ 最高適合</div></div>
+    <div class="cell"><div class="l">現実的到達上限</div><div class="v">3〜8億円<span class="s">広告バンドルで上振れ</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">4,580億円<span class="s">縦型動画+55.9%</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p>日本ではUGC単独のTAMが存在しない（正直な結論）。代理指標は動画制作サービス市場 <strong>4,580億円</strong>（2025年度、+8.1%）<span class="pill fact">公表</span>と、<strong>縦型動画広告 2,049億円（+55.9%＝最速）</strong>。グローバルのUGCプラットフォーム市場は<strong>CAGR 27〜32%</strong>と、インフルエンサーマーケの約2倍の速度で伸びている。<span class="text-muted">出典：矢野経済 2025／サイバーエージェント 2026/3</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <p>注目すべきは、<strong>UGC量産を主力にする大型上場専業が事実上不在＝空白市場</strong>であること。FinT（推定20〜35億円）、LIDDELL（推定15〜30億円）、縦型ショート素材専業のidentify／DeLMO（推定1〜5億円）などが新興プレイヤー。<span class="pill est">推定</span>が中心で、上場のCINC（18.25億円）はUGCが傍流。海外ではBillo・Insense・JoinBrandsがクリエイター数万人規模で稼働する。</p>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>KSFはクリエイターを集める量産力（プール規模が事業の核）、冒頭3秒のフックを作るディレクション、品質の標準化、そして<strong>広告運用とのセット提供でCPAを30〜50%改善する——これが最大の差別化軸</strong>。天井はクリエイターの定着率の低さ、品質のばらつき、ディレクションコスト、そしてAI-UGCによる代替。単価は1本1〜数万円、月額数万〜数十万円のストック型。</p>
+
+  <div class="callout green">
+    <span class="k">D. バズの強みが効くか — ◎ 7商品で最も強く効く</span>
+    <p>毎月400人の生徒供給網は、そのままUGCクリエイター網そのもの。量産力という最大の差別化軸が、空白市場の参入余地と完全に一致している。広告運用とバンドルすれば継続課金化しやすい。バズの強みが最も効き、立ち上がりも最速の商品。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>3〜8億円（単体）。</strong>広告運用とのバンドルで上振れする。空白市場ゆえの先行者利益が見込めるが、AI-UGCによる代替が下押し要因。防波堤は広告成果（CPA）への接続。</p>
+</section>
+
+<!-- ===== P4 広告運用代行 ===== -->
+<section id="p4">
+  <div class="sec-head"><span class="sec-no">06</span><h2 class="sec-title">④ 広告運用代行</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--amber);">△→○</div></div>
+    <div class="cell"><div class="l">到達上限</div><div class="v">手数料2〜5億<span class="s">預かり込み10〜30億</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">2.9兆円<span class="s">7商品で最大</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p><strong>運用型広告 2兆9,352億円</strong>（2025、+12.5%）<span class="pill fact">公表</span>で、ネット広告費は初めて総広告費の過半数（50.2%）に到達した。市場CAGRは約9.6%（矢野）。<strong>7商品で最大の母体市場</strong>。<span class="text-muted">出典：電通「2025年 日本の広告費」2026/3</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <p>「広告費の20%課金」を事業の中核に据えるのは、実は中堅・専業の非上場企業。デジタルアスリート（11.25億円）<span class="pill fact">公表</span>、グラッドキューブ（17.5億円）<span class="pill fact">公表</span>、キーワードマーケティング（約27億円・2022）など。オーリーズ・ユニアドは非開示<span class="pill est">推定</span>。大手（サイバーエージェント、セプテーニ等）はメディアレップや自社プロダクトへ多様化しており、純粋な%課金運用代行は売上の一部にすぎない。</p>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>KSFは自動化／プロダクト化（Shirofune導入で1人あたり管理数が最大25倍）、1人あたり担当社数の設計、媒体認定（Google Premier Partnerは上位3%）。天井は運用人材の採用難と高離職率（3年で半数が入替）、<strong>広告費の立替＝運転資金</strong>、媒体依存、薄い利益率。課金は広告費の20%が最頻値で、最低月100万円出稿〜、契約は3か月〜が多い。</p>
+
+  <div class="callout amber">
+    <span class="k">D. バズの強みが効くか — △→○（運用は弱いが、トップライン目標に最も効く）</span>
+    <p>運用自体は専門人材と運転資金が必要で、生徒網は直接効かない。だが見方を変えると、①運用に要するクリエイティブの量産はバズが供給でき、②<strong>広告費を預かることでトップライン（事業規模）を一気に膨らませられる</strong>。10億トップライン目標との相性はむしろ最良。制作系で掴んだ顧客にバンドルすれば弱点を補完できる。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>手数料売上では2〜5億円。だが広告費の預かり込みのトップラインでは10〜30億規模も視野に入る。</strong>手数料P/Lだけ見ると小さいが、10億トップライン目標の"かさ増しエンジン"として別格の役割を持つ。</p>
+</section>
+
+<!-- ===== P5 クリエイティブ制作 ===== -->
+<section id="p5">
+  <div class="sec-head"><span class="sec-no">07</span><h2 class="sec-title">⑤ 広告用クリエイティブ制作</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--green);">◎ 効く</div></div>
+    <div class="cell"><div class="l">現実的到達上限</div><div class="v">2〜6億円<span class="s">運用バンドルで上振れ</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">4,922億円<span class="s">単価デフレ進行</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p>ネット広告制作費 <strong>4,922億円</strong>（2025、+4.0%）<span class="pill fact">公表</span>、動画制作サービス4,580億円。動画がドライバーで関連市場はCAGR約16.5%。ただし<strong>単価デフレが進行中</strong>——AnyMindは短尺動画の収益単価が約1/4に急落したと開示している。<span class="text-muted">出典：電通 2026/3／矢野経済 2025</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <p>AnyMind（507億円・一部）<span class="pill fact">公表</span>、四半期10万本を内製しAI効果予測「極予測AI」を持つサイバーエージェント、SaaS型のリチカ（推定10〜20億円）、Crevo・LOCUS（推定数億〜15億円）など。<strong>専業スタートアップは赤字継続が共通パターン</strong>で、ガラパゴス（AIR Design）はピーク78億円から大幅縮小した。</p>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>KSFは"運用型クリエイティブ"（量産＋ABテストで勝ち筋を早く見つける）、フォーマットの資産化、効果予測AI、AIによる生産性向上（CAは1人あたり制作量4.5倍）、運用とのバンドル。天井は労働集約性（業界平均利益率15〜25%）、クリエイター採用難、そして<strong>AIによるコモディティ化・単価下落</strong>。単価は動画1本5〜50万円、バナー数千〜1万円、量産は定額月3〜10万円。</p>
+
+  <div class="callout green">
+    <span class="k">D. バズの強みが効くか — ◎ 効く</span>
+    <p>生徒のクリエイティブ量産力が武器になる。"運用型クリエイティブ"（量産＋検証）にバズの供給網が効き、広告運用・UGCとセットで強い。原価を生徒供給で下げられる点が、赤字が多いこの領域で数少ない利益面の構造優位になる。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>2〜6億円（単体）。</strong>運用バンドルで上振れするが、AIによる単価デフレが下押し。"制作だけ"を売ると縮小均衡に陥るため、防波堤は効果（CPA）への接続。</p>
+</section>
+
+<!-- ===== P6 採用支援 ===== -->
+<section id="p6">
+  <div class="sec-head"><span class="sec-no">08</span><h2 class="sec-title">⑥ 採用支援サービス（SNS採用・採用広報）</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--accent);">○ 部分的に効く</div></div>
+    <div class="cell"><div class="l">現実的到達上限</div><div class="v">2〜6億円<span class="s">空白で先行できれば上振れ</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">SNS採用は空白<span class="s">関連市場は数千億</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p><strong>SNS採用・採用広報だけを切り出した市場統計は存在しない＝黎明期</strong>。複数市場の按分で推定300〜600億円規模。関連市場は新卒採用支援1,395億円（2023年度）、人材紹介4,490億円（2024年度）、RPO約700億円。<span class="pill fact">公表</span><span class="text-muted">出典：矢野経済研究所 2025</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <p>No Company（博報堂系・150%成長を標榜、推定数億円）、採用広報SaaSのtalentbook（1,200社導入、推定十数億円）、HeaR（推定数億円）など<span class="pill est">推定</span>。<strong>純粋専業で数十億を稼ぐプレイヤーは未確認＝統合・参入の余地が大きい</strong>。上場のサイバー・バズもHR事業は0.97億円と極小で、「採用×SNS」専業の大手はまだ生まれていない。</p>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>KSFはデータ×クリエイティブの両輪、大手クライアントとの継続契約（継続率60%前後）、採用広報を経営課題に接続する提案力。天井は労働集約性、インハウス化との二極化、そして市場定義の曖昧さ（採用広告・RPO・人材紹介に分散吸収されやすい）。単価は月20〜50万円で継続は数年、人材紹介を併設するなら成功報酬は理論年収の30〜35%が相場。</p>
+
+  <div class="callout">
+    <span class="k">D. バズの強みが効くか — ○ 部分的に効く</span>
+    <p>SNS採用運用・採用広報コンテンツ制作は生徒網が効き、専業未確立の空白ゆえ先行者利益も狙える。ただし採用の専門性（人材紹介・採用設計）や"データ×大手継続"という本質的KSFは、バズの強みとややズレる。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>2〜6億円。</strong>空白市場で先行できれば上振れする。単価が高く継続も数年と長いのが利点。専業ノウハウの不足が立ち上がりの律速になる。</p>
+</section>
+
+<!-- ===== P7 成果報酬型 ===== -->
+<section id="p7">
+  <div class="sec-head"><span class="sec-no">09</span><h2 class="sec-title">⑦ 成果報酬型マーケ支援</h2></div>
+  <div class="strip">
+    <div class="cell"><div class="l">バズ適合</div><div class="v" style="color:var(--amber);">△ 効きにくい</div></div>
+    <div class="cell"><div class="l">現実的到達上限</div><div class="v">1〜4億円<span class="s">単独では柱に不向き</span></div></div>
+    <div class="cell"><div class="l">近い市場</div><div class="v">4,382億円<span class="s">上場各社は増収減益</span></div></div>
+  </div>
+
+  <h4>A. 市場規模と成長性</h4>
+  <p>アフィリエイト市場 <strong>4,382億円</strong>（2024年度、+6.5%）<span class="pill fact">公表</span>で、2028年度に5,835億円（CAGR 7.2%）の予測。ただし<strong>上場各社は増収減益が目立つ</strong>（立替・枠コスト上昇）。<span class="text-muted">出典：矢野経済研究所 2025/3</span></p>
+
+  <h4>B. 近い会社の実売上</h4>
+  <p>LTV予測で差別化し継続率88%・唯一の増収増益を達成した<strong>Macbee Planet（516.75億円）</strong>が突出<span class="pill fact">公表</span>。ほかバリューコマース304億円、A8.netのファンコミュニケーションズ69.6億円、レントラックス33億円など<span class="pill fact">公表</span>。勝者の差別化はいずれも<strong>データ資産</strong>である。</p>
+
+  <h4>C. KSF とスケールの天井</h4>
+  <p>KSFはメディア／送客網の規模と質、データ・LTV分析力、CPA設計、ASPのプラットフォーム化。天井は立替リスクと成果ゼロ時の無収入、規制（ステマ規制・薬機法）、アドフラウド（2024年の国内被害推計は約1,510億円）。課金はASP手数料20〜30%＋成果単価。</p>
+
+  <div class="callout amber">
+    <span class="k">D. バズの強みが効くか — △ 効きにくい</span>
+    <p>成果報酬は資本／データ集約型で、運転資金・成果ゼロ時の無収入・規制・アドフラウドのリスクが大きく、生徒の労働供給網は直接効かない。ただし<strong>生徒のUGC／インフルエンサーを成果報酬の送客メディアに転換する</strong>形なら一部効く（将来オプション）。</p>
+  </div>
+
+  <h4>E. 現実的到達上限</h4>
+  <p><strong>1〜4億円。</strong>リスクが高く単独では柱に不向き。UGC／インフルエンサー網を成果型課金に乗せる形が将来の選択肢になる。</p>
+</section>
+
+<!-- ===== COMPARE ===== -->
+<section id="compare">
+  <div class="sec-head"><span class="sec-no">10</span><h2 class="sec-title">横断比較表</h2></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>商品</th><th>代表企業の売上</th><th>主要KSF</th><th>スケールの天井</th><th class="c">適合</th><th>到達上限</th></tr></thead>
+    <tbody>
+      <tr><td><strong>③ UGC制作</strong></td><td>専業大型不在／1〜35億</td><td>量産プール・ディレクション・広告成果接続</td><td>定着率・品質・AI代替</td><td class="c"><span class="badge b-aa">◎</span></td><td class="num"><strong>3〜8億</strong></td></tr>
+      <tr><td><strong>① SNS運用代行</strong></td><td>3〜24億（CB 70億）</td><td>指名獲得・標準化・SaaS併売</td><td>採用難・属人化・解約率</td><td class="c"><span class="badge b-aa">◎</span></td><td class="num"><strong>3〜8億</strong></td></tr>
+      <tr><td><strong>④ 広告運用代行</strong></td><td>専業11〜27億</td><td>自動化・担当社数設計・媒体認定</td><td>人材難・広告費立替・薄利</td><td class="c"><span class="badge b-b">△</span></td><td class="num"><strong>預かり10〜30億</strong></td></tr>
+      <tr><td><strong>② インフルエンサーPR</strong></td><td>再生保証主力20〜50億</td><td>キャスティング網・"在庫"供給</td><td>単発フロー・在庫リスク</td><td class="c"><span class="badge b-aa">◎</span></td><td class="num"><strong>3〜10億</strong></td></tr>
+      <tr><td><strong>⑤ クリエイティブ制作</strong></td><td>専業数億〜20億（赤字多）</td><td>運用型・フォーマット資産・効果AI</td><td>労働集約・AI単価下落</td><td class="c"><span class="badge b-aa">◎</span></td><td class="num"><strong>2〜6億</strong></td></tr>
+      <tr><td><strong>⑥ 採用支援</strong></td><td>専業数億〜十数億</td><td>データ×クリエイティブ・大手継続</td><td>インハウス化・定義曖昧</td><td class="c"><span class="badge b-a">○</span></td><td class="num"><strong>2〜6億</strong></td></tr>
+      <tr><td><strong>⑦ 成果報酬型</strong></td><td>33〜517億（二極化）</td><td>送客網・LTV分析・ASP化</td><td>立替・規制・アドフラウド</td><td class="c"><span class="badge b-b">△</span></td><td class="num"><strong>1〜4億</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout">
+    <p style="margin:0;"><strong>読み解き：</strong>バズ適合 ◎ は"作る・運用する"労働集約系（UGC・SNS運用・クリエイティブ・マイクロインフルエンサー）に集中している。△ の運用代行・成果報酬は資本／データ集約型でバズ単独の強みは効きにくいが、<strong>運用代行は広告費の預かりでトップラインを最大化できる別格の役割</strong>を持つ。<span class="text-muted">※ ◎効く ／ ○部分的に効く ／ △効きにくい。売上は公表値・推定値の混在。</span></p>
+  </div>
+</section>
+
+<!-- ===== RANKING ===== -->
+<section id="ranking">
+  <div class="sec-head"><span class="sec-no">11</span><h2 class="sec-title">結論：10億トップラインの「柱」ランキング</h2></div>
+
+  <div class="rank">
+    <div class="rn">1</div>
+    <div>
+      <h3>UGC制作<span class="tag">適合◎・空白市場・最速成長</span></h3>
+      <p style="margin:0;">生徒網がそのままUGCクリエイター網。大型専業が不在の空白に量産力で先行でき、広告運用とのバンドルで継続課金化できる。バズの強みが最も効き、立ち上がりが最速。<strong>最初に立てる主柱</strong>。</p>
+    </div>
+  </div>
+  <div class="rank">
+    <div class="rn">2</div>
+    <div>
+      <h3>SNS運用代行<span class="tag">適合◎・ストック収益</span></h3>
+      <p style="margin:0;">撮影・制作・運用を生徒が全工程担える。専業が10〜24億を達成済みの実証モデルで、月額ストックが積み上がる。教育パイプライン直結。<strong>UGCと並行で主力化</strong>。</p>
+    </div>
+  </div>
+  <div class="rank">
+    <div class="rn">3</div>
+    <div>
+      <h3>広告運用代行<span class="tag">適合△→○・トップライン拡大エンジン</span></h3>
+      <p style="margin:0;">運用自体はバズの強み外だが、広告費の"預かり"で事業規模（トップライン）を一気に押し上げる。市場は2.9兆と最大。制作系で掴んだ顧客にアップセルし、必要なクリエイティブはバズが供給して弱点を補完する。<strong>10億到達の"かさ増し"装置</strong>。</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:30px;">
+    <span class="k">攻める順序（フライホイール）</span>
+    <p style="margin:0;"><strong>STEP 1</strong>　生徒の供給力で立ち上がるUGC・SNS運用代行・クリエイティブを束ね、"制作・運用の供給力"で実績と顧客基盤を構築する。　<strong>STEP 2</strong>　その顧客に広告運用代行をアップセルし、広告費を預かってトップラインを10億へ押し上げる。　準主力にインフルエンサーPR（再生保証＝生徒の在庫を活用）、別動隊に採用支援（空白の先行）、将来オプションに成果報酬を置く。</p>
+  </div>
+</section>
+
+<!-- ===== INSIGHTS ===== -->
+<section id="insights">
+  <div class="sec-head"><span class="sec-no">12</span><h2 class="sec-title">意外な発見・盲点</h2></div>
+
+  <h3>① 追い風と強みが一致している</h3>
+  <p>"運用代行市場"は実は低成長（CAGR 6〜10%）。最速は縦型ショート／UGC（年＋37〜55%）で、バズの量産網はこの最速セグメントに最も効く。チャンスと強みが噛み合う、稀な状況にある。</p>
+
+  <h3>② 全商品共通の最大リスクは単価デフレ</h3>
+  <p>AIコモディティ化で"量産だけ"は代替される（AnyMindは短尺単価が1/4に急落と開示）。防波堤は広告成果（CPA／CPV）への接続。バズは"作るだけ"を売らず、必ず運用とセットにすべき。</p>
+
+  <h3>③ 10億トップラインの最短路は"預かり"</h3>
+  <p>広告運用代行の広告費預かりは、手数料P/Lでは小さく見えるが、事業規模（トップライン）を一気に膨らませる。手数料だけで判断すると過小評価する盲点になる。</p>
+
+  <h3>④ 採用支援は"空白市場"</h3>
+  <p>SNS採用専業が未確立で数十億プレイヤーが不在＝先行者利益のチャンス。ただし本質KSFは"データ×大手継続"で、バズの強みとややズレる点に注意。</p>
+
+  <h3>⑤ 母体の資金力が"天井"を強みに変える</h3>
+  <p>運用代行・成果報酬の最大の天井は広告費の立替＝運転資金。バズカレッジ（年商24億）の資金体力を回せるなら、他社の弱点を逆に参入優位へ転換できる隠れたレバーになる。</p>
+
+  <h3>⑥ "量産で売上"だけでは利益が出ない</h3>
+  <p>クリエイティブ／UGC専業は赤字が多い（労働集約・利益率15〜25%）。バズは生徒供給で原価を下げられる点が、数少ない利益面の構造優位。ここを活かせるかが分水嶺になる。</p>
+</section>
+
+<!-- ===== SOURCES ===== -->
+<section id="sources">
+  <div class="sec-head"><span class="sec-no">13</span><h2 class="sec-title">参照ソース・調査の限界</h2></div>
+
+  <h4>市場規模（一次データ）</h4>
+  <ul class="clean">
+    <li>電通「2025年 日本の広告費」2026/3（運用型2.94兆・ネット4兆・制作費4,922億・動画1兆）</li>
+    <li>サイバーエージェント／デジタルインファクト 国内動画広告市場 2026/3（動画8,855億・縦型2,049億 +55.9%）</li>
+    <li>サイバー・バズ／デジタルインファクト SMM市場調査 2024/11（運用支援283億・IM860億・縦型ショート246億）</li>
+    <li>矢野経済研究所 動画コンテンツビジネス／人材ビジネス／新卒採用支援／アフィリエイト 各調査 2025</li>
+    <li>全国求人情報協会 求人情報提供サービス市場 2024年度（6,661億）</li>
+  </ul>
+
+  <h4>企業実売上（IR・決算公告）</h4>
+  <ul class="clean">
+    <li>サイバー・バズ／ホットリンク／トリドリ／UUUM／AnyMind 各IR</li>
+    <li>Macbee Planet／ファンコミュニケーションズ／バリューコマース／レントラックス 各IR</li>
+    <li>グラッドキューブ／CINC 各決算、デジタルアスリート／リチカ／Crevo 官報決算</li>
+  </ul>
+
+  <h4>KSF・相場・規制</h4>
+  <ul class="clean">
+    <li>PLAN-B リスティング代理店61社調査（手数料20%が最頻）／Shirofune 自動化・離職・立替リスク調査</li>
+    <li>Google Partners 認定要件／SAKIYOMI・テテマーチ・リチカ 各社インタビュー</li>
+    <li>Spider AF アドフラウド調査 2025（被害約1,510億）／各社費用相場記事（一次統計でなく事業者掲載値）</li>
+  </ul>
+
+  <div class="callout amber">
+    <span class="k">調査の限界（正直な注記）</span>
+    <ul class="clean" style="margin:0;">
+      <li>運用代行・クリエイティブ・UGC・SNS採用は単独の公式市場区分がなく、TAMは関連市場からの推計。</li>
+      <li>非上場専業の年商はほぼ非開示で、客数×単価・評価額逆算等の推定（確度は中〜低）。</li>
+      <li>業界横断の平均解約率・LTVの客観統計は不在で、各社の個別訴求値のみ。</li>
+      <li>SMM／インフルエンサーの最新一次データは2024/11発表で、2025年版は本調査時点で未公表。</li>
+    </ul>
+  </div>
+  <p class="text-muted" style="font-size:13.5px;">全URL付きの詳細ソース一覧はリサーチ元データに保持。各商品の根拠リンクは個別に提供可能。</p>
+</section>
+
+<footer>
+  株式会社 buzz ／ バズコミット 戦略リサーチ　｜　棚商品ポテンシャル徹底調査　｜　調査基準日 2026年6月27日<br>
+  本レポートの数値は、出典を明記した公表値と、ロジックを付した推定値を区別して記載している。投資・経営判断の最終的な責任は読者に帰属する。
+</footer>
+
+</div>
+</body>
+</html>
