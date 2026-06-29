@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>事業間シナジー図解：バズカレッジ × 法人7商品 — バズコミット 戦略リサーチ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap');
+  :root{
+    --ink:#1b2330;--body:#2c3644;--muted:#6b7686;--faint:#9aa4b2;
+    --accent:#2f6f9f;--accent-soft:#eef4f9;--line:#e6eaef;--line-soft:#eef1f5;
+    --green:#2e8b6b;--green-soft:#eaf5f0;--amber:#b9802e;--amber-soft:#fbf3e6;--red:#c0563f;
+    --purple:#6b5b95;--purple-soft:#f0edf6;--bg:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Noto Sans JP',sans-serif;color:var(--body);background:#f3f5f8;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .page{max-width:880px;margin:0 auto;background:var(--bg);padding:0 60px 110px;box-shadow:0 1px 40px rgba(20,30,50,.06);}
+  a{color:var(--accent);}
+  strong{font-weight:700;color:var(--ink);}
+  .text-muted{color:var(--muted);}
+
+  .topnav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);z-index:10;}
+  .topnav .links{display:flex;gap:16px;flex-wrap:wrap;}
+  .topnav a{text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;}
+  .topnav a:hover{color:var(--accent);}
+  .topnav .where{font-size:12px;color:var(--faint);}
+
+  .cover{padding:54px 0 34px;border-bottom:1px solid var(--line);margin-bottom:42px;}
+  .eyebrow{font-size:13px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:18px;}
+  .cover h1{font-family:'Noto Serif JP',serif;font-weight:700;color:var(--ink);font-size:33px;line-height:1.42;margin-bottom:18px;}
+  .cover .lead{font-size:16px;color:var(--muted);max-width:710px;}
+  .cover .meta{margin-top:20px;font-size:13px;color:var(--faint);}
+
+  section{margin-bottom:58px;scroll-margin-top:80px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;padding-bottom:13px;border-bottom:2px solid var(--ink);}
+  .sec-no{font-size:13px;font-weight:900;color:var(--accent);letter-spacing:.05em;}
+  h2.sec-title{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--ink);line-height:1.4;}
+  h3{font-size:17px;font-weight:700;color:var(--ink);margin:28px 0 10px;}
+  p{margin-bottom:14px;}
+  .lead-p{font-size:16.5px;line-height:1.95;color:var(--ink);margin-bottom:18px;}
+
+  .fig{border:1px solid var(--line);border-radius:14px;padding:22px;margin:22px 0;background:#fcfdfe;}
+  .fig-cap{font-size:12.5px;color:var(--faint);text-align:center;margin-top:10px;}
+  .fig svg{display:block;width:100%;height:auto;}
+
+  .callout{background:var(--accent-soft);border-radius:12px;padding:20px 24px;margin:22px 0;}
+  .callout.green{background:var(--green-soft);}.callout.purple{background:var(--purple-soft);}.callout.amber{background:var(--amber-soft);}
+  .callout .k{display:block;font-size:12px;letter-spacing:.1em;font-weight:700;margin-bottom:7px;color:var(--accent);}
+  .callout.green .k{color:var(--green);}.callout.purple .k{color:var(--purple);}.callout.amber .k{color:var(--amber);}
+  .callout p:last-child{margin-bottom:0;}
+
+  /* aidma vs buzz parallel pipelines */
+  .pipe-wrap{display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  .pipe{border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .pipe.buzz{border-color:var(--accent);background:var(--accent-soft);}
+  .pipe-title{font-size:13px;font-weight:900;margin-bottom:10px;color:var(--ink);}
+  .pipe.buzz .pipe-title{color:var(--accent);}
+  .pipe-row{display:flex;align-items:stretch;gap:8px;flex-wrap:nowrap;overflow-x:auto;}
+  .pstep{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12.5px;line-height:1.45;}
+  .pstep .pl{font-size:10px;color:var(--faint);font-weight:700;margin-bottom:3px;letter-spacing:.03em;}
+  .pstep b{color:var(--ink);font-weight:700;}
+  .pipe.buzz .pstep{border-color:#cfe0ee;}
+  .parrow{display:flex;align-items:center;color:var(--accent);font-weight:900;font-size:16px;flex-shrink:0;}
+
+  /* cluster cards */
+  .clusters{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .cluster{border:1px solid var(--line);border-radius:12px;padding:15px 17px;}
+  .cluster .ct{font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:4px;}
+  .cluster .cs{font-size:11.5px;color:var(--faint);margin-bottom:9px;}
+  .chip{display:inline-block;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;padding:3px 10px;border-radius:7px;margin:0 5px 5px 0;}
+  .cluster .role{font-size:12.5px;color:var(--body);line-height:1.6;margin-top:6px;border-top:1px dashed var(--line);padding-top:8px;}
+  .cluster .role b{color:var(--accent);}
+
+  /* ladder */
+  .ladder{display:flex;flex-direction:column;gap:8px;margin:18px 0;}
+  .rung{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:10px;padding:12px 16px;}
+  .rung .lv{font-family:'Noto Serif JP',serif;font-weight:700;color:#fff;background:var(--accent);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+  .rung .lvtxt{flex:1;}
+  .rung .lvtxt b{font-size:14px;color:var(--ink);}
+  .rung .lvtxt span{font-size:12.5px;color:var(--muted);display:block;line-height:1.5;}
+  .rung .price{font-size:12px;font-weight:700;color:var(--green);white-space:nowrap;}
+  .rung.l1 .lv{background:#7fb0d0;}.rung.l2 .lv{background:#4f90b8;}.rung.l3 .lv{background:var(--accent);}.rung.l4 .lv{background:#234e6e;}
+
+  /* cross-sell chain */
+  .chain{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin:16px 0;}
+  .cnode{flex:1;min-width:130px;background:#fff;border:1.5px solid var(--accent);border-radius:10px;padding:11px 13px;}
+  .cnode .cl{font-size:10px;color:var(--faint);font-weight:700;margin-bottom:2px;}
+  .cnode b{font-size:13px;color:var(--ink);}
+  .cnode span{font-size:11.5px;color:var(--muted);display:block;line-height:1.45;margin-top:3px;}
+  .carrow{display:flex;align-items:center;color:var(--accent);font-weight:900;font-size:18px;}
+
+  .effects{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+  .eff{border:1px solid var(--line);border-radius:11px;padding:14px 16px;position:relative;}
+  .eff::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:11px 0 0 11px;background:var(--green);}
+  .eff .et{font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:3px;}
+  .eff p{font-size:12.5px;color:var(--body);line-height:1.6;margin:0;}
+
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.8;}
+  .botnav{margin:38px 0 0;display:flex;gap:10px;flex-wrap:wrap;}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 18px;border-radius:10px;}
+  .botnav a:hover{background:var(--accent);}
+  .botnav a.alt{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+
+  @media print{body{background:#fff;font-size:12px;}.page{box-shadow:none;max-width:none;padding:0 8mm;}.topnav{position:static;}section,.fig{break-inside:avoid;}}
+  @media(max-width:680px){.page{padding:0 20px 60px;}.cover h1{font-size:25px;}.clusters,.effects{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topnav">
+  <div class="links"><a href="index.html">① レポート本編</a><a href="companies.html">② 事例集</a><a href="insights.html">③ 戦略インサイト</a></div>
+  <span class="where">④ シナジー図解</span>
+</div>
+
+<div class="cover">
+  <div class="eyebrow">株式会社 buzz ／ バズコミット 戦略リサーチ ─ 事業間シナジー図解</div>
+  <h1>「人を集める事業」と「人を稼働させる事業」を<br>噛み合わせる ── バズ版シナジー設計</h1>
+  <p class="lead">アイドマ・ホールディングスが「ママワークス（人を集める）」と「営業支援（人を稼働させる）」を噛み合わせて高成長したのと同じ構造を、バズは <strong>バズカレッジ（生徒を集める）× 法人7商品（稼働させる）</strong> で作れる。このページは、その事業間シナジー・人材の回し方・期待効果を図解で示す。</p>
+  <div class="meta">調査基準日 2026年6月27日　｜　アイドマの数値は同社IR・公表値。バズの数値は社内前提（バズカレッジ年商24億・毎月約400名入会）に基づく設計案。</div>
+</div>
+
+<!-- ===== 1. アイドマに学ぶ ===== -->
+<section id="aidma">
+  <div class="sec-head"><span class="sec-no">01</span><h2 class="sec-title">お手本：アイドマ・ホールディングスの構造</h2></div>
+  <p class="lead-p">アイドマ・ホールディングス（東証グロース・7373）は、<strong>2025年8月期に売上132.7億円（前年比+25.0%）・営業利益31.0億円（+25.7%）・ROE約28%</strong>、5年平均成長率は約49%という高成長・高収益。その核心は、2つの事業を噛み合わせた構造にある。</p>
+  <p>「ママワークス」（在宅・スキマで働きたいママ／クラウドワーカーを<strong>約50万人</strong>集めるプラットフォーム）で<strong>人を集め</strong>、その人材を主力の営業支援「Sales Platform」（売上構成の約66%）の<strong>稼働力（インサイドセールス等）として企業に提供する</strong>。集めた人を、そのまま企業の戦力に変える――この一気通貫が利益率と成長率を押し上げている。</p>
+
+  <div class="fig">
+    <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans JP, sans-serif">
+      <defs>
+        <marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2f6f9f"/></marker>
+      </defs>
+      <!-- collect -->
+      <rect x="20" y="70" width="180" height="80" rx="12" fill="#f0edf6" stroke="#6b5b95" stroke-width="1.5"/>
+      <text x="110" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#1b2330">ママワークス</text>
+      <text x="110" y="120" text-anchor="middle" font-size="11.5" fill="#6b7686">ママ・在宅ワーカー</text>
+      <text x="110" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#6b5b95">約50万人を集める</text>
+      <!-- arrow -->
+      <line x1="205" y1="110" x2="285" y2="110" stroke="#2f6f9f" stroke-width="2.5" marker-end="url(#ah)"/>
+      <text x="245" y="100" text-anchor="middle" font-size="11" fill="#2f6f9f" font-weight="700">人材を供給</text>
+      <!-- deploy -->
+      <rect x="290" y="70" width="190" height="80" rx="12" fill="#eef4f9" stroke="#2f6f9f" stroke-width="1.5"/>
+      <text x="385" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#1b2330">Sales Platform</text>
+      <text x="385" y="120" text-anchor="middle" font-size="11.5" fill="#6b7686">営業支援（売上の約66%）</text>
+      <text x="385" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#2f6f9f">企業で稼働させる</text>
+      <!-- arrow -->
+      <line x1="485" y1="110" x2="565" y2="110" stroke="#2f6f9f" stroke-width="2.5" marker-end="url(#ah)"/>
+      <text x="525" y="100" text-anchor="middle" font-size="11" fill="#2f6f9f" font-weight="700">成果提供</text>
+      <!-- client -->
+      <rect x="570" y="70" width="170" height="80" rx="12" fill="#eaf5f0" stroke="#2e8b6b" stroke-width="1.5"/>
+      <text x="655" y="103" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1b2330">企業（顧客）</text>
+      <text x="655" y="123" text-anchor="middle" font-size="11.5" fill="#6b7686">営業力を獲得</text>
+      <!-- title -->
+      <text x="380" y="36" text-anchor="middle" font-size="13" font-weight="900" fill="#1b2330">集める → 戦力化して稼働 → 企業に成果　＝　売上132.7億・+25%</text>
+    </svg>
+    <div class="fig-cap">図1：アイドマの「人を集める × 人を稼働させる」一気通貫構造（同社IR公表値より作図）</div>
+  </div>
+</section>
+
+<!-- ===== 2. バズへの写像 ===== -->
+<section id="map">
+  <div class="sec-head"><span class="sec-no">02</span><h2 class="sec-title">バズへの写像：同じ構造が、もう手元にある</h2></div>
+  <p class="lead-p">アイドマが時間とコストをかけて作った「人を集める装置」を、バズは<strong>バズカレッジ（毎月約400名が入会するSNSスクール／年商24億）</strong>として既に持っている。あとは、その人材を法人7商品の稼働力に流し込むだけ。下図は両社の構造を並べたもの。</p>
+
+  <div class="pipe-wrap">
+    <div class="pipe">
+      <div class="pipe-title">アイドマ・ホールディングス</div>
+      <div class="pipe-row">
+        <div class="pstep"><div class="pl">① 集める</div><b>ママワークス</b><br>ママ約50万人</div>
+        <div class="parrow">→</div>
+        <div class="pstep"><div class="pl">② 道具・育成</div><b>meet in／クラプロ</b><br>商談ツール・営業コンテンツ</div>
+        <div class="parrow">→</div>
+        <div class="pstep"><div class="pl">③ 稼働させる</div><b>Sales Platform</b><br>営業支援で企業に提供</div>
+        <div class="parrow">→</div>
+        <div class="pstep"><div class="pl">④ 成果・収益</div><b>売上132.7億</b><br>+25%・ROE約28%</div>
+      </div>
+    </div>
+    <div class="pipe buzz">
+      <div class="pipe-title">バズ（同じ構造に写すと）</div>
+      <div class="pipe-row">
+        <div class="pstep"><div class="pl">① 集める</div><b>バズカレッジ</b><br>毎月約400名入会</div>
+        <div class="parrow">→</div>
+        <div class="pstep"><div class="pl">② 道具・育成</div><b>教育パイプライン</b><br>制作・運用ノウハウで戦力化</div>
+        <div class="parrow">→</div>
+        <div class="pstep"><div class="pl">③ 稼働させる</div><b>法人7商品</b><br>UGC・運用・採用…で提供</div>
+        <div class="parrow">→</div>
+        <div class="pstep"><div class="pl">④ 成果・収益</div><b>トップライン10億へ</b><br>＋母体スクールに実績還元</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout purple">
+    <span class="k">アイドマとの決定的な違い（＝バズの上振れ要因）</span>
+    <p style="margin:0;">アイドマのママワークスは「登録者を集める」プラットフォーム。バズカレッジは<strong>「お金を払って学びに来る生徒」</strong>が源泉なので、①集客が課金で自走する（むしろ集客が黒字）、②学習意欲が高く戦力化が速い、③仕事を回すほどスクールの実績・評判が上がり、さらに生徒が集まる。この<strong>"教育×供給×評判"の三重ループ</strong>はママワークス型より強い。</p>
+  </div>
+</section>
+
+<!-- ===== 3. フライホイール ===== -->
+<section id="flywheel">
+  <div class="sec-head"><span class="sec-no">03</span><h2 class="sec-title">全体図：バズ式フライホイール</h2></div>
+  <p>生徒が入り、戦力化され、7商品で稼働し、その成果がスクールの評判に還元され、さらに生徒が集まる――回せば回すほど加速する自己増殖エンジン。</p>
+
+  <div class="fig">
+    <svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans JP, sans-serif">
+      <defs>
+        <marker id="fa" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#2f6f9f"/></marker>
+      </defs>
+      <!-- rotation arcs (clockwise) -->
+      <g fill="none" stroke="#2f6f9f" stroke-width="3">
+        <path d="M435,101 A185,185 0 0,1 498,146" marker-end="url(#fa)"/>
+        <path d="M544,289 A185,185 0 0,1 520,363" marker-end="url(#fa)"/>
+        <path d="M399,451 A185,185 0 0,1 321,451" marker-end="url(#fa)"/>
+        <path d="M200,363 A185,185 0 0,1 176,289" marker-end="url(#fa)"/>
+        <path d="M223,146 A185,185 0 0,1 285,101" marker-end="url(#fa)"/>
+      </g>
+      <!-- center -->
+      <circle cx="360" cy="270" r="78" fill="#eef4f9" stroke="#2f6f9f" stroke-width="2"/>
+      <text x="360" y="258" text-anchor="middle" font-size="15" font-weight="900" fill="#1b2330">バズ式</text>
+      <text x="360" y="278" text-anchor="middle" font-size="15" font-weight="900" fill="#1b2330">フライホイール</text>
+      <text x="360" y="298" text-anchor="middle" font-size="10.5" fill="#6b7686">自己増殖する人材エンジン</text>
+      <!-- node 1 top -->
+      <g>
+        <rect x="275" y="55" width="170" height="60" rx="11" fill="#fff" stroke="#2f6f9f" stroke-width="1.5"/>
+        <text x="360" y="80" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f6f9f">① 毎月約400人が入会</text>
+        <text x="360" y="98" text-anchor="middle" font-size="11" fill="#566573">集客が課金で自走する</text>
+      </g>
+      <!-- node 2 -->
+      <g>
+        <rect x="451" y="183" width="170" height="60" rx="11" fill="#fff" stroke="#2f6f9f" stroke-width="1.5"/>
+        <text x="536" y="208" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f6f9f">② 教育で戦力化</text>
+        <text x="536" y="226" text-anchor="middle" font-size="11" fill="#566573">品質の再現性をつくる</text>
+      </g>
+      <!-- node 3 -->
+      <g>
+        <rect x="384" y="390" width="170" height="60" rx="11" fill="#fff" stroke="#2f6f9f" stroke-width="1.5"/>
+        <text x="469" y="415" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f6f9f">③ 法人7商品で稼働</text>
+        <text x="469" y="433" text-anchor="middle" font-size="11" fill="#566573">UGC・運用・採用…</text>
+      </g>
+      <!-- node 4 -->
+      <g>
+        <rect x="166" y="390" width="170" height="60" rx="11" fill="#fff" stroke="#2f6f9f" stroke-width="1.5"/>
+        <text x="251" y="415" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f6f9f">④ 収益＋生徒に報酬</text>
+        <text x="251" y="433" text-anchor="middle" font-size="11" fill="#566573">仕事と実戦経験を還元</text>
+      </g>
+      <!-- node 5 -->
+      <g>
+        <rect x="99" y="183" width="170" height="60" rx="11" fill="#fff" stroke="#2f6f9f" stroke-width="1.5"/>
+        <text x="184" y="206" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f6f9f">⑤ 評判・実績UP</text>
+        <text x="184" y="224" text-anchor="middle" font-size="11" fill="#566573">さらに生徒が集まる</text>
+      </g>
+    </svg>
+    <div class="fig-cap">図2：生徒供給→戦力化→稼働→還元→評判→生徒増、の自己強化ループ</div>
+  </div>
+</section>
+
+<!-- ===== 4. 7商品への分配 ===== -->
+<section id="clusters">
+  <div class="sec-head"><span class="sec-no">04</span><h2 class="sec-title">生徒供給網は、7商品にこう枝分かれする</h2></div>
+  <p>同じ供給網（生徒）を、役割を変えて7商品に流し込む。1つの資産で複数事業を回せる＝高い資産効率。</p>
+
+  <div class="clusters">
+    <div class="cluster">
+      <div class="ct">A. 作り手クラスター</div>
+      <div class="cs">生徒＝クリエイティブの作り手</div>
+      <span class="chip">UGC制作</span><span class="chip">広告クリエイティブ</span><span class="chip">SNS運用代行</span>
+      <div class="role"><b>役割：</b>撮影・投稿・動画素材を量産。バズの強みが最も効く（適合◎）コア。</div>
+    </div>
+    <div class="cluster">
+      <div class="ct">B. 発信者クラスター</div>
+      <div class="cs">生徒＝マイクロインフルエンサー</div>
+      <span class="chip">インフルエンサーPR</span>
+      <div class="role"><b>役割：</b>生徒のアカウント網が"再生の在庫"に。再生保証型・UGC拡散の供給源。</div>
+    </div>
+    <div class="cluster">
+      <div class="ct">C. 広告・成果クラスター</div>
+      <div class="cs">作った素材を成果につなぐ</div>
+      <span class="chip">広告運用代行</span><span class="chip">成果報酬型</span>
+      <div class="role"><b>役割：</b>制作系で掴んだ顧客にアップセル。<b>広告費の預かりでトップライン拡大</b>。</div>
+    </div>
+    <div class="cluster">
+      <div class="ct">D. 人材クラスター</div>
+      <div class="cs">生徒＝採用広報の作り手／人材</div>
+      <span class="chip">採用支援</span>
+      <div class="role"><b>役割：</b>生徒が企業の採用広報コンテンツを制作。育成済み人材の紹介にも展開可能。</div>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="k">ポイント</span>
+    <p style="margin:0;">A（作り手）が土台。ここで顧客を獲得し、C（広告・成果）へアップセルして事業規模を伸ばし、B（発信）とD（人材）で供給網の使い道を広げる。<strong>全商品が同じ生徒供給網を共有</strong>するので、商品が増えても人材調達コストは増えない。</p>
+  </div>
+</section>
+
+<!-- ===== 5. 人材の回し方 ===== -->
+<section id="ladder">
+  <div class="sec-head"><span class="sec-no">05</span><h2 class="sec-title">人材の回し方：レベル別に、単価の高い商品へ</h2></div>
+  <p>生徒を一律に扱わず、スキルレベルで段階的に上の商品へアサインする。入口は軽作業、上に行くほど単価と責任が上がり、卒業後は外販できる人材になる。</p>
+
+  <div class="ladder">
+    <div class="rung l1">
+      <div class="lv">L1</div>
+      <div class="lvtxt"><b>ライト稼働（入口）</b><span>UGC1本撮影・投稿制作の単発タスク。誰でも入りやすく、母数を稼ぐ。</span></div>
+      <div class="price">単発・低単価</div>
+    </div>
+    <div class="rung l2">
+      <div class="lv">L2</div>
+      <div class="lvtxt"><b>運用担当</b><span>SNS運用代行・広告クリエイティブの継続案件。月額ストック収益を生む。</span></div>
+      <div class="price">月額・中単価</div>
+    </div>
+    <div class="rung l3">
+      <div class="lv">L3</div>
+      <div class="lvtxt"><b>ディレクター／インフルエンサー</b><span>運用ディレクション、PR施策の主役。品質と成果を握る中核人材。</span></div>
+      <div class="price">高単価</div>
+    </div>
+    <div class="rung l4">
+      <div class="lv">L4</div>
+      <div class="lvtxt"><b>認定人材（外販）</b><span>育成済み人材を採用支援・人材紹介で外部企業へ。他社が持てない"人の卸"。</span></div>
+      <div class="price">紹介・最高単価</div>
+    </div>
+  </div>
+  <div class="callout amber">
+    <span class="k">なぜこれが効くか</span>
+    <p style="margin:0;">レベル設計があると、①未経験者でも入口があり供給が途切れない、②伸びた人材を上位商品へ自動的に配置できる、③卒業生が"認定人材"として外販可能になり、競合が採用で苦しむ領域（運用者・クリエイター不足）を逆に収益源にできる。</p>
+  </div>
+</section>
+
+<!-- ===== 6. 商品間クロスセル ===== -->
+<section id="crosssell">
+  <div class="sec-head"><span class="sec-no">06</span><h2 class="sec-title">商品間シナジー：1社の顧客を、横へ縦へ広げる</h2></div>
+  <p>制作で入った顧客を、配信・運用・成果へと連鎖させる。1顧客あたりの取引額（LTV）が積み上がる。</p>
+
+  <div class="chain">
+    <div class="cnode"><div class="cl">入口</div><b>UGC制作</b><span>本物の人の素材を量産</span></div>
+    <div class="carrow">→</div>
+    <div class="cnode"><div class="cl">束ねる</div><b>広告クリエイティブ</b><span>素材を広告用に編集・量産</span></div>
+    <div class="carrow">→</div>
+    <div class="cnode"><div class="cl">配信</div><b>広告運用代行</b><span>広告費を預かり成果最大化</span></div>
+    <div class="carrow">→</div>
+    <div class="cnode"><div class="cl">成果</div><b>成果報酬型</b><span>CPA改善でリピート・高LTV</span></div>
+  </div>
+  <div class="callout green">
+    <span class="k">横のシナジーも効く</span>
+    <p style="margin:0;"><strong>SNS運用代行 ⇄ インフルエンサーPR</strong>＝同じ生徒網を運用者にも発信者にも使える。<strong>全商品 → 採用支援</strong>＝取引先企業に「採用広報も生徒の制作力で」とアップセル。<strong>制作系で築いた信頼 → 広告運用</strong>＝"作る人"から"成果を出す人"へ格上げし、預かり広告費で事業規模（トップライン）を一気に押し上げる。</p>
+  </div>
+</section>
+
+<!-- ===== 7. 期待効果 ===== -->
+<section id="effects">
+  <div class="sec-head"><span class="sec-no">07</span><h2 class="sec-title">期待できる効果（このシナジーの効き目）</h2></div>
+  <div class="effects">
+    <div class="eff"><div class="et">低CAC（集客が自走）</div><p>スクールの発信と権威性で法人リードが指名で入る。集客自体がスクール事業として黒字。</p></div>
+    <div class="eff"><div class="et">低原価（供給網で内製）</div><p>制作・運用を生徒供給で内製でき、赤字が多い制作業界で数少ない利益面の構造優位を持つ。</p></div>
+    <div class="eff"><div class="et">高LTV（横→縦の連鎖）</div><p>UGC→運用→成果のクロスセルで1顧客あたり取引額が積み上がり、継続も伸びる。</p></div>
+    <div class="eff"><div class="et">高い資産効率</div><p>1つの生徒供給網で7商品を回す。商品が増えても人材調達コストは増えない。</p></div>
+    <div class="eff"><div class="et">自己増殖（フライホイール）</div><p>仕事を回すほど実績・評判が上がり、生徒がさらに集まる。追う競合は回り始めるまで赤字。</p></div>
+    <div class="eff"><div class="et">母体への還元</div><p>生徒に実戦の仕事と報酬が渡り、スクール（年商24億）の価値とリテンションを底上げする。</p></div>
+  </div>
+  <div class="callout purple" style="margin-top:20px;">
+    <span class="k">一言でいうと</span>
+    <p style="margin:0;">アイドマが「ママを集めて企業の営業力に変える」なら、バズは<strong>「生徒を集めて企業のマーケ戦力に変える」</strong>。違いは、源泉が"課金して学びに来る生徒"であること――集客が黒字で、戦力化が速く、回すほど母体スクールが強くなる。この三重ループが、他社が容易に真似できない堀になる。</p>
+  </div>
+</section>
+
+<div class="botnav">
+  <a href="index.html">① レポート本編</a>
+  <a class="alt" href="companies.html">② 事例集</a>
+  <a class="alt" href="insights.html">③ 戦略インサイト</a>
+</div>
+
+<footer>
+  株式会社 buzz ／ バズコミット 戦略リサーチ ─ 事業間シナジー図解　｜　調査基準日 2026年6月27日<br>
+  アイドマ・ホールディングスの数値は同社IR（2025年8月期決算）等の公表値。バズに関する数値・構造は社内前提（バズカレッジ年商24億・毎月約400名入会）に基づく設計案であり、実績を保証するものではない。
+</footer>
+
+</div>
+</body>
+</html>

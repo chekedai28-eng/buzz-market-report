@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戦略インサイト：伸びている会社・勝ちパターン・バズの勝ち筋 — バズコミット 戦略リサーチ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap');
+  :root{
+    --ink:#1b2330;--body:#2c3644;--muted:#6b7686;--faint:#9aa4b2;
+    --accent:#2f6f9f;--accent-soft:#eef4f9;--line:#e6eaef;--line-soft:#eef1f5;
+    --green:#2e8b6b;--green-soft:#eaf5f0;--amber:#b9802e;--amber-soft:#fbf3e6;--red:#c0563f;
+    --purple:#6b5b95;--purple-soft:#f0edf6;--bg:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Noto Sans JP',sans-serif;color:var(--body);background:#f3f5f8;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .page{max-width:880px;margin:0 auto;background:var(--bg);padding:0 60px 110px;box-shadow:0 1px 40px rgba(20,30,50,.06);}
+  a{color:var(--accent);}
+  strong{font-weight:700;color:var(--ink);}
+  .text-muted{color:var(--muted);}
+
+  .topnav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);z-index:10;}
+  .topnav .links{display:flex;gap:18px;}
+  .topnav a{text-decoration:none;color:var(--ink);font-weight:700;font-size:13.5px;}
+  .topnav a:hover{color:var(--accent);}
+  .topnav .where{font-size:12.5px;color:var(--faint);letter-spacing:.04em;}
+
+  .cover{padding:54px 0 34px;border-bottom:1px solid var(--line);margin-bottom:46px;}
+  .eyebrow{font-size:13px;letter-spacing:.18em;color:var(--accent);font-weight:700;margin-bottom:18px;}
+  .cover h1{font-family:'Noto Serif JP',serif;font-weight:700;color:var(--ink);font-size:34px;line-height:1.4;margin-bottom:18px;}
+  .cover .lead{font-size:16px;color:var(--muted);max-width:700px;}
+  .cover .meta{margin-top:22px;font-size:13px;color:var(--faint);}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 9px;border-radius:20px;vertical-align:middle;white-space:nowrap;}
+  .pill.fact{background:var(--green-soft);color:var(--green);}
+  .pill.est{background:var(--amber-soft);color:var(--amber);}
+
+  section{margin-bottom:60px;scroll-margin-top:80px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;padding-bottom:13px;border-bottom:2px solid var(--ink);}
+  .sec-no{font-size:13px;font-weight:900;color:var(--accent);letter-spacing:.05em;}
+  h2.sec-title{font-family:'Noto Serif JP',serif;font-size:25px;font-weight:700;color:var(--ink);line-height:1.4;}
+  h3{font-size:18px;font-weight:700;color:var(--ink);margin:30px 0 10px;}
+  p{margin-bottom:15px;}
+  .lead-p{font-size:17px;line-height:2;color:var(--ink);margin-bottom:20px;}
+
+  .callout{background:var(--accent-soft);border-radius:12px;padding:22px 26px;margin:24px 0;}
+  .callout.green{background:var(--green-soft);}
+  .callout.amber{background:var(--amber-soft);}
+  .callout.purple{background:var(--purple-soft);}
+  .callout .k{display:block;font-size:12px;letter-spacing:.1em;font-weight:700;margin-bottom:8px;color:var(--accent);}
+  .callout.green .k{color:var(--green);}.callout.amber .k{color:var(--amber);}.callout.purple .k{color:var(--purple);}
+  .callout p:last-child{margin-bottom:0;}
+
+  .tbl-wrap{margin:22px 0;overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.6;}
+  thead th{text-align:left;font-weight:700;color:var(--ink);border-bottom:2px solid var(--ink);padding:10px 14px 10px 0;font-size:13px;}
+  tbody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--body);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num,th.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .g{color:var(--green);font-weight:700;}
+
+  /* pattern card */
+  .pat{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;}
+  .pat-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
+  .pat-no{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;color:var(--accent);line-height:1;}
+  .pat-name{font-size:17px;font-weight:900;color:var(--ink);}
+  .pat-ex{font-size:12.5px;color:var(--faint);margin-left:auto;}
+  .pat-body{font-size:14px;line-height:1.75;margin-bottom:10px;}
+  .pat-buzz{background:var(--accent-soft);border-radius:9px;padding:11px 16px;font-size:13.5px;line-height:1.7;}
+  .pat-buzz b{color:var(--accent);}
+
+  /* overseas card */
+  .ov{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;}
+  .ov-head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+  .ov-name{font-size:17px;font-weight:900;color:var(--ink);}
+  .ov-tag{font-size:12px;color:var(--faint);}
+  .ov-metrics{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:8px 0 12px;}
+  .ov-metrics .m{flex:1;padding:11px 15px;border-right:1px solid var(--line);}
+  .ov-metrics .m:last-child{border-right:none;}
+  .ov-metrics .ml{font-size:11px;color:var(--faint);margin-bottom:3px;}
+  .ov-metrics .mv{font-size:15px;font-weight:900;color:var(--ink);line-height:1.3;}
+  .ov-buzz{background:var(--green-soft);border-radius:9px;padding:11px 16px;font-size:13.5px;line-height:1.7;margin-top:10px;}
+  .ov-buzz b{color:var(--green);}
+  .ov-link{margin-top:12px;}
+  .ov-link a{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;}
+  .ov-link a:hover{background:var(--accent);color:#fff;}
+
+  /* moat / hint cards */
+  .hint{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);}
+  .hint:last-child{border-bottom:none;}
+  .hint .hn{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:700;color:var(--purple);width:40px;flex-shrink:0;line-height:1.1;}
+  .hint h3{margin:0 0 5px;font-size:16.5px;}
+  .hint p{margin:0;font-size:14px;line-height:1.75;}
+
+  ul.clean{list-style:none;margin:6px 0 14px;}
+  ul.clean li{position:relative;padding:4px 0 4px 20px;font-size:14.5px;line-height:1.7;}
+  ul.clean li::before{content:'';position:absolute;left:3px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+
+  .note{background:var(--amber-soft);border-radius:8px;padding:8px 14px;font-size:12.5px;color:var(--amber);margin-top:10px;line-height:1.6;}
+  footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.8;}
+  .botnav{margin:40px 0 0;display:flex;gap:12px;flex-wrap:wrap;}
+  .botnav a{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:13px 20px;border-radius:10px;}
+  .botnav a:hover{background:var(--accent);}
+
+  @media print{body{background:#fff;font-size:12px;}.page{box-shadow:none;max-width:none;padding:0 8mm;}.topnav{position:static;}section,.pat,.ov,.hint{break-inside:avoid;}}
+  @media(max-width:680px){.page{padding:0 20px 60px;}.cover h1{font-size:26px;}.ov-metrics{flex-direction:column;}.ov-metrics .m{border-right:none;border-bottom:1px solid var(--line);}.topnav .links{gap:12px;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topnav">
+  <div class="links"><a href="index.html">① レポート本編</a><a href="companies.html">② 事例集</a><a href="synergy.html">④ シナジー図解</a></div>
+  <span class="where">③ 戦略インサイト</span>
+</div>
+
+<div class="cover">
+  <div class="eyebrow">株式会社 buzz ／ バズコミット 戦略リサーチ ─ 戦略インサイト</div>
+  <h1>今、何が伸びているか。<br>どの型を真似て、バズはどこで勝つか。</h1>
+  <p class="lead">レポート本編（市場の地図）と事例集（代表企業）を踏まえ、ここでは一段踏み込む。①今いちばん伸びている会社と成長ドライバー、②参考にできる事業モデル・集客の型、③日本に輸入できそうな海外の先行事例、④そして"バズだけが作れて他社が真似しにくい"勝ち筋の方向性。手当たり次第のヒント集として読んでほしい。</p>
+  <div class="meta">調査基準日 2026年6月27日　｜　数字は <span class="pill fact">公表</span>（一次資料）／<span class="pill est">推定</span> を区別。海外の売上はGetLatka等の推計値を含む。</div>
+</div>
+
+<!-- ===== 1. 今伸びている ===== -->
+<section id="growing">
+  <div class="sec-head"><span class="sec-no">01</span><h2 class="sec-title">今、何が伸びているか（成長ドライバー）</h2></div>
+  <p class="lead-p">まず外観から。デロイト トーマツが2026年1月に発表したテクノロジー企業成長率ランキング「Technology Fast 50 2025 Japan」では、受賞50社の<strong>平均成長率が＋304.7%</strong>、1位は<strong>カイテク（介護スポットワーク）の＋1,616.3%</strong>、3位にAI/DXのJDSC。上位は<strong>AI・スポットワーク（人材のオンデマンド供給）・DX</strong>が席巻している。<span class="text-muted">出典：デロイト トーマツ 2026/1/28発表。</span></p>
+  <p>この「人の供給をオンデマンド化する」「AIで生産性を跳ね上げる」という2大潮流は、バズの事業領域（マーケ／クリエイティブ）でもそのまま当てはまる。下表は、バズが直接参考にできるマーケ・SNS・クリエイター領域の高成長プレイヤーを成長率順に並べたもの。</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>企業（領域）</th><th class="num">直近の年商</th><th class="num">成長率</th><th>何が伸びを作っているか</th></tr></thead>
+    <tbody>
+      <tr><td><strong>FinT</strong>（Z世代SNS/UGC）</td><td class="num">非開示</td><td class="num g">毎年150%超</td><td>自社メディアSucle（100万人）を営業資産化。<span class="pill fact">公表</span></td></tr>
+      <tr><td><strong>No Company</strong>（SNS採用）</td><td class="num">非開示</td><td class="num g">毎年150%超</td><td>博報堂グループ×SNSデータ。空白市場を先行。<span class="pill fact">公表</span></td></tr>
+      <tr><td><strong>AnyMind Group</strong>（統合×AI）</td><td class="num">507億円</td><td class="num g">+52%</td><td>クリエイター×EC×AIの統合。クリエイター事業の粗利+206%。<span class="pill fact">公表</span></td></tr>
+      <tr><td><strong>Macbee Planet</strong>（成果報酬）</td><td class="num">516.75億円</td><td class="num g">+31%</td><td>LTV予測データ＋成果報酬。継続率88%。<span class="pill fact">公表</span></td></tr>
+      <tr><td><strong>トリドリ</strong>（インフルエンサーPF）</td><td class="num">53.7億円</td><td class="num g">+25.7%</td><td>アプリ型マッチング×月額サブスク。マイクロ9万人。<span class="pill fact">公表</span></td></tr>
+      <tr><td><strong>Natee</strong>（TikTok/縦型）</td><td class="num">月次2億規模</td><td class="num g">3年で約10倍</td><td>縦型ショート特化。2025年アカツキ子会社化。<span class="pill est">公表/推定</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>伸びを作っている4つのドライバー</h3>
+  <ul class="clean">
+    <li><strong>縦型ショート／UGCが最速エンジン。</strong>縦型動画広告は+55.9%、グローバルのクリエイターエコノミーは$189.4B(2025)→$663.8B(2034)・CAGR約14.9%、日本のクリエイターエコノミーも2兆894億円（2024年）で2021年以降 年平均約15.5%成長（クリエイターエコノミー協会／三菱UFJリサーチ 2025/12）。「人が撮った短尺」に資金と需要が集中している。</li>
+    <li><strong>AIによる生産性ジャンプ。</strong>制作・運用の単位時間あたり産出を数倍化した会社が抜ける（後述のArcadsは5人で$5M）。AIは"量産コストの破壊"と"単価デフレ"の両刃。</li>
+    <li><strong>人の供給をオンデマンド化（スポットワーク／クリエイター網）。</strong>Fast 50上位の共通項。「必要な人手を必要なだけ安く速く」供給できる会社が高成長。バズの生徒供給網はまさにこの構造。</li>
+    <li><strong>データで成果（LTV/CPA）に接続。</strong>Macbeeの継続率88%のように、"作る・運用する"だけでなく成果データを資産化した会社が高単価・高継続を実現している。</li>
+  </ul>
+</section>
+
+<!-- ===== 2. 型カタログ ===== -->
+<section id="patterns">
+  <div class="sec-head"><span class="sec-no">02</span><h2 class="sec-title">参考にできる「事業モデル・集客の型」カタログ</h2></div>
+  <p>調査した28社の伸び方を分解すると、繰り返し現れる"勝ちパターン"が7つに整理できた。各型に、代表例と<strong>バズへの示唆</strong>を添える。</p>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">01</span><span class="pat-name">オウンドメディア → インサイドセールス</span><span class="pat-ex">SAKIYOMI／キーマケ／アナグラム／HeaR</span></div>
+    <div class="pat-body">専門コンテンツ（ブログ・YouTube・書籍・ホワイトペーパー）で第一想起を取り、資料DL→ISでBtoBリードを刈り取る。SAKIYOMIは「半年でリード10件→500件→月1,000件」、アナグラムは業界最大級のブログで指名流入を作る。<strong>営業を回す前に問い合わせが来る状態</strong>を作り、CACを構造的に下げるのが本質。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b>バズカレッジの発信力・受講生メディアを「法人リードの入口」に転用できる。教える内容＝そのまま権威性。最も再現しやすく、最初に組むべき型。</div>
+  </div>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">02</span><span class="pat-name">SaaS／ツール併売でストック化</span><span class="pat-ex">テテマーチ(SINIS)／リチカ／LIDDELL</span></div>
+    <div class="pat-body">労働集約の代行（フロー）で入り、分析・生成ツール（ストック）で残す。テテマーチはSINISが全社成長を牽引、リチカはSaaS＋伴走でLTV化。ツールは集客装置・提案根拠・高粗利収益の三役を兼ねる。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b>運用ノウハウを軽量ツール（投稿設計・UGC素材管理・成果ダッシュボード）に載せれば、解約率と労働集約という天井を一段押し上げられる。</div>
+  </div>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">03</span><span class="pat-name">供給網フライホイール（人の在庫を持つ）</span><span class="pat-ex">UUUM／TORIHADA(PPP STUDIO)／LIDDELL</span></div>
+    <div class="pat-body">クリエイター／インフルエンサーを大量に組織化し、その"在庫"が案件を呼び、案件が新たな供給者を呼ぶ自己強化ループ。UUUMはトップYouTuber、TORIHADAは縦型クリエイター5,000人超、LIDDELLは5万人。供給規模そのものが参入障壁になる。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b><strong>これがバズの本丸。</strong>毎月400人が入る教育パイプライン＝供給が自動で増え続ける唯一無二のフライホイール。他社は「人を集める」段階から始めるが、バズは既に回っている。</div>
+  </div>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">04</span><span class="pat-name">プラットフォーム／PLG（セルフサーブ）</span><span class="pat-ex">トリドリ／identify(DeLMO)</span></div>
+    <div class="pat-body">人手の営業ではなくアプリ／プラットフォームでマッチング・素材提供を自動化。トリドリは月額サブスク×起用無制限で初心者企業を取り込み、DeLMOは縦型素材16万本を在庫化。<strong>限界費用が低く、スケールしても利益率が落ちにくい</strong>のが強み。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b>生徒×法人をつなぐ簡易マッチング層を作れば、人海戦術の限界を超えて案件数を伸ばせる。まずは半自動の"発注ボード"から。</div>
+  </div>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">05</span><span class="pat-name">成果報酬・LTV保証でリスク肩代わり</span><span class="pat-ex">Macbee Planet</span></div>
+    <div class="pat-body">成果地点を「契約・利用」に置き、広告主の費用対効果を実質保証。データ（LTV予測）があるからリスクを取れる。継続率88%・上場来平均年率約52%成長。<strong>"安心して任せられる"が最大の差別化</strong>。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b>供給網で原価を抑えられるバズは、他社より低リスクで成果型を提示できる余地がある。ただし運転資金とデータ整備が前提。中期の選択肢。</div>
+  </div>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">06</span><span class="pat-name">M&Aロールアップ</span><span class="pat-ex">Macbee Planet／エフ・コード(SAKIYOMI)</span></div>
+    <div class="pat-body">隣接機能（PR・広告・スクール）を買収して顧客基盤と人材を一気に取り込み、クロスセルで非連続成長。エフ・コードはSAKIYOMI・BUZZを取り込み連結を急拡大。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b>自前で弱い領域（広告運用の運転資金、採用の専門性）は、提携・買収で補完する手もある。まずは業務提携から軽く始められる。</div>
+  </div>
+
+  <div class="pat">
+    <div class="pat-head"><span class="pat-no">07</span><span class="pat-name">自社メディアを"営業資産"に</span><span class="pat-ex">FinT(Sucle)／No Company</span></div>
+    <div class="pat-body">100万人規模の自社メディアやデータベースを持ち、それ自体が①リーチの証明②UGC創出の実証環境③タイアップ枠になる。FinTは毎年150%成長、No Companyは博報堂のSNSデータを武器に。</div>
+    <div class="pat-buzz"><b>バズへの示唆：</b>受講生・卒業生のアカウント群は巨大なメディア網。これを束ねて「到達力」を数値化できれば、提案の説得力と単価が跳ねる。</div>
+  </div>
+</section>
+
+<!-- ===== 3. 海外 ===== -->
+<section id="overseas">
+  <div class="sec-head"><span class="sec-no">03</span><h2 class="sec-title">日本に輸入できそうな海外の先行事例</h2></div>
+  <p>海外、とくに米国のAIクリエイティブ／クリエイター経済は日本の2〜3年先を走る。なかでも「AIで人を置き換える」潮流と、その裏返しとして「本物の人のUGCを安く速く供給する」潮流が同時に伸びている。バズが取るべきは後者×AIのハイブリッドだ。</p>
+
+  <div class="ov">
+    <div class="ov-head"><span class="ov-name">Arcads</span><span class="ov-tag">米/仏・AIでUGC風動画広告を量産</span></div>
+    <div class="ov-metrics">
+      <div class="m"><div class="ml">年商(ARR)</div><div class="mv">$6M→$15M<div class="text-muted" style="font-size:11px;font-weight:400;">2025/5→2026（推計）</div></div></div>
+      <div class="m"><div class="ml">資金調達</div><div class="mv">$16M シード<div class="text-muted" style="font-size:11px;font-weight:400;">2025/12・黒字済み</div></div></div>
+      <div class="m"><div class="ml">体制</div><div class="mv">少人数<div class="text-muted" style="font-size:11px;font-weight:400;">5人で$5M/12ヶ月</div></div></div>
+    </div>
+    <p style="font-size:14px;margin-bottom:0;">AI俳優に台本を読ませUGC風の動画広告を量産するツール。撮影なし・1本数分。6,000社超が利用し、ブートストラップで黒字化してから大型調達。「インフルエンサーをAIで置き換える」という尖った打ち出し。<span class="text-muted">出典：GetLatka、Arcads公式ブログ（推計値含む）。</span></p>
+    <div class="ov-buzz"><b>バズへの示唆：</b>Arcadsの弱点は"AIだから本物の口コミではない"こと。バズは<strong>本物の人間（生徒）のUGCを、AI並みのスピードとコストで量産</strong>できる。AIに対する「リアルさ」の逆張りが効く。</div>
+    <div class="ov-link"><a href="https://www.arcads.ai/" target="_blank" rel="noopener">arcads.ai ↗</a></div>
+  </div>
+
+  <div class="ov">
+    <div class="ov-head"><span class="ov-name">Creatify / AdCreative.ai</span><span class="ov-tag">米・AI広告クリエイティブ生成</span></div>
+    <div class="ov-metrics">
+      <div class="m"><div class="ml">Creatify 年商</div><div class="mv">$5.2M<div class="text-muted" style="font-size:11px;font-weight:400;">2025（推計）</div></div></div>
+      <div class="m"><div class="ml">モデル</div><div class="mv">SaaSサブスク<div class="text-muted" style="font-size:11px;font-weight:400;">URL→広告動画を自動生成</div></div></div>
+      <div class="m"><div class="ml">潮流</div><div class="mv">量産×検証<div class="text-muted" style="font-size:11px;font-weight:400;">バリエーション無限化</div></div></div>
+    </div>
+    <p style="font-size:14px;margin-bottom:0;">商品URLやテキストから広告クリエイティブ（動画・バナー・UGC風）を自動生成するSaaS。「人間の制作」を"無限のバリエーション生成＋ABテスト"に置き換える運用型クリエイティブの典型。<span class="text-muted">出典：GetLatka（推計値）。</span></p>
+    <div class="ov-buzz"><b>バズへの示唆：</b>"無限バリエーション"はAIが得意。バズは<strong>AI生成の量×生徒の本物UGCの質</strong>を組み合わせ、「AIで当たり仮説を量産→人で本命を作り込む」二段構えにすると差別化できる。</div>
+    <div class="ov-link"><a href="https://creatify.ai/" target="_blank" rel="noopener">creatify.ai ↗</a></div>
+  </div>
+
+  <div class="ov">
+    <div class="ov-head"><span class="ov-name">Billo / Insense / JoinBrands</span><span class="ov-tag">米・UGCクリエイターのマーケットプレイス</span></div>
+    <div class="ov-metrics">
+      <div class="m"><div class="ml">クリエイター</div><div class="mv">1〜3万人規模<div class="text-muted" style="font-size:11px;font-weight:400;">登録制プール</div></div></div>
+      <div class="m"><div class="ml">単価</div><div class="mv">1本 約$120〜<div class="text-muted" style="font-size:11px;font-weight:400;">透明な定価制</div></div></div>
+      <div class="m"><div class="ml">モデル</div><div class="mv">在庫の市場化<div class="text-muted" style="font-size:11px;font-weight:400;">ブランド↔クリエイター</div></div></div>
+    </div>
+    <p style="font-size:14px;margin-bottom:0;">一般クリエイターを大量に登録させ、ブランドが「1本いくら」で発注できる市場を運営。クリエイターの"在庫"を標準化・定価化して取引コストを下げたのが勝因。<span class="text-muted">出典：各社公式（クリエイター数・単価）。</span></p>
+    <div class="ov-buzz"><b>バズへの示唆：</b>バズは「集める」コストがゼロ（生徒が毎月入る）。<strong>日本版UGCマーケットプレイスを供給コスト最安で立ち上げられる</strong>立場にある。プラットフォーム化の最有力。</div>
+    <div class="ov-link"><a href="https://billo.app/" target="_blank" rel="noopener">billo.app ↗</a></div>
+  </div>
+
+  <div class="ov">
+    <div class="ov-head"><span class="ov-name">ElevenLabs（参考）</span><span class="ov-tag">米/英・AI音声、クリエイター経済の基盤</span></div>
+    <div class="ov-metrics">
+      <div class="m"><div class="ml">年商(ARR)</div><div class="mv">約$330M<div class="text-muted" style="font-size:11px;font-weight:400;">2025年末（推計）</div></div></div>
+      <div class="m"><div class="ml">伸び</div><div class="mv">エンタープライズ急拡大<div class="text-muted" style="font-size:11px;font-weight:400;">—</div></div></div>
+      <div class="m"><div class="ml">位置づけ</div><div class="mv">制作の"部品"<div class="text-muted" style="font-size:11px;font-weight:400;">音声を量産インフラ化</div></div></div>
+    </div>
+    <p style="font-size:14px;margin-bottom:0;">AI音声をAPI/SaaSで提供し、動画・UGC量産の"部品"として組み込まれることで急成長。制作の各工程（音声・字幕・吹替）がAI部品化していく流れを象徴。<span class="text-muted">出典：findnstart等（推計）。</span></p>
+    <div class="ov-buzz"><b>バズへの示唆：</b>制作工程がAI部品化するほど、残る希少資源は<strong>「本物の人」と「当てる企画・ディレクション」</strong>。バズはこの2つを供給網で握れる。</div>
+    <div class="ov-link"><a href="https://elevenlabs.io/" target="_blank" rel="noopener">elevenlabs.io ↗</a></div>
+  </div>
+  <div class="note">※海外企業の売上はGetLatka等の第三者推計（ARR）であり、各社公表の確定値ではない。トレンドの方向性を読む目的で参照のこと。</div>
+</section>
+
+<!-- ===== 4. バズの勝ち筋 ===== -->
+<section id="moat">
+  <div class="sec-head"><span class="sec-no">04</span><h2 class="sec-title">バズだけが作れる"真似されない勝ち筋"</h2></div>
+  <p class="lead-p">最後に、ここまでの全材料を、バズの非対称な資産に重ねて方向性を示す。詳細設計は社内で詰める前提の、考え方のヒントとして読んでほしい。</p>
+
+  <div class="callout purple">
+    <span class="k">バズの非対称資産（=他社が金で買えないもの）</span>
+    <p style="margin:0;">①<strong>毎月約400人が入り続ける供給網</strong>（他社は"人集め"から始めるが、バズは蛇口が開きっぱなし）　②<strong>教育パイプライン</strong>（素人を一定品質の戦力に変換する仕組み＝品質の再現性）　③<strong>フライホイール</strong>（生徒に仕事を回すほどスクール本体の実績・評判が上がり、さらに生徒が集まる自己強化ループ）。この3点が同時に揃う会社は他にない。</p>
+  </div>
+
+  <div class="hint">
+    <div class="hn">A</div>
+    <div>
+      <h3>「AI×本物の人」のハイブリッド供給で、量と質を両取りする</h3>
+      <p>世界の最前線（Arcads等）は"AIで人を置き換える"方向。だがAIには「本物の口コミの信頼感」が出せない。バズは本物の人間UGCをAI並みのスピード・コストで出せる唯一の立場。AIで当たり仮説を量産し、生徒（本物の人）で本命を作り込む二段構えが、どちらの陣営も真似しにくい中間地点になる。</p>
+    </div>
+  </div>
+  <div class="hint">
+    <div class="hn">B</div>
+    <div>
+      <h3>教育パイプラインを"認定クリエイター供給網"として外販する</h3>
+      <p>競合の最大のボトルネックは「クリエイター・運用者の採用と育成」。バズはそこが自動で回る。育成済みの認定クリエイター／運用者を、自社案件だけでなく他のエージェンシーや事業会社にも供給する"人材の卸"は、蓄積がないと作れず模倣に数年かかる。</p>
+    </div>
+  </div>
+  <div class="hint">
+    <div class="hn">C</div>
+    <div>
+      <h3>"作るだけ"を売らない。必ず広告成果（CPA/CPV）に接続する</h3>
+      <p>全商品共通の値崩れリスクはAIによる単価デフレ。防波堤は成果への接続。UGC・運用・クリエイティブを束ね「素材を作って終わり」ではなく「CPAを下げるまで」をパッケージにすれば、量産コモディティ競争から抜けられる。Macbeeの成果報酬思想を供給網の低原価で実装するイメージ。</p>
+    </div>
+  </div>
+  <div class="hint">
+    <div class="hn">D</div>
+    <div>
+      <h3>供給網フライホイールを「UGC→運用→採用」と横展開し、広告費の"預かり"でトップライン化</h3>
+      <p>同じ生徒供給網を、UGC制作・SNS運用・採用支援・クリエイティブに横展開すれば、1つの資産で複数商品を回せる（高い資産効率）。制作系で掴んだ顧客に広告運用をアップセルし広告費を預かれば、手数料は小さくてもトップラインは一気に10億へ近づく。</p>
+    </div>
+  </div>
+  <div class="hint">
+    <div class="hn">E</div>
+    <div>
+      <h3>日本版UGCマーケットプレイスを、業界最安の供給コストで立ち上げる</h3>
+      <p>Billo等の海外UGC市場の勝因は「クリエイター在庫の標準化・定価化」。その最大コストである"集客"がバズはゼロ。生徒×法人をつなぐ発注プラットフォームを最も安く作れる立場にあり、ここはプロダクト化の最有力候補。半自動の発注ボードから小さく始められる。</p>
+    </div>
+  </div>
+  <div class="hint">
+    <div class="hn">F</div>
+    <div>
+      <h3>なぜ真似されないか（堀の正体）</h3>
+      <p>競合が同じことをやろうとすると、まず「毎月400人が入る集客」と「育成の仕組み」をゼロから作る必要がある＝時間とブランドの蓄積が要る。さらにバズはフライホイール（仕事を回す→評判が上がる→生徒が増える）が既に回っており、追う側は回り始めるまで赤字を掘り続ける。<strong>蓄積・教育・自己強化ループの三重の堀</strong>が、模倣の経済性を成立させない。</p>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:26px;">
+    <span class="k">まとめ：次の一手の方向性</span>
+    <p style="margin:0;">最速で立ち上がるのは<strong>UGC×（運用への接続）</strong>。供給網の強みが最も効き、海外の追い風も最強。そこで「本物の人を、AI並みの速度と安さで、成果が出るまで」というポジションを取る。並行して供給網を運用・採用へ横展開し、最終的に広告費の預かりでトップラインを10億へ。プロダクト化（UGCマーケットプレイス）は、その供給網の上に最も安く乗せられる次の山。</p>
+  </div>
+</section>
+
+<div class="botnav">
+  <a href="index.html">① レポート本編</a>
+  <a href="companies.html">② 事例集（21社）</a>
+  <a href="synergy.html">④ シナジー図解 →</a>
+</div>
+
+<footer>
+  株式会社 buzz ／ バズコミット 戦略リサーチ ─ 戦略インサイト　｜　調査基準日 2026年6月27日<br>
+  国内の成長率はデロイト トーマツ「Technology Fast 50 2025 Japan」(2026/1)および各社IR・公表値。海外企業の売上はGetLatka等の第三者推計（ARR）を含み、確定値ではない。事業判断の最終的な責任は読者に帰属する。
+</footer>
+
+</div>
+</body>
+</html>
